@@ -1,13 +1,13 @@
 {
-  "appName": "Tiny File Manager",
+  "appName": "SHOPAGG",
   "version": "2.6",
   "language": [
     {
       "name": "Română",
       "code": "ro",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Titlu aplicație",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Autentificare",
         "Username": "Nume utilizator",
         "Password": "Parolă",
@@ -82,8 +82,8 @@
       "name": "Hungarian",
       "code": "hu",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Fájl kezelő",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Bejelentkezés",
         "Username": "Felhasználói név",
         "Password": "Jelszó",
@@ -155,8 +155,8 @@
       "name": "Norsk",
       "code": "no",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Fil behandler",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Logg inn",
         "Username": "Brukernavn",
         "Password": "Passord",
@@ -293,7 +293,9 @@
         "free of": "خالی از",
         "Calculate folder size": "محاسبه حجم پوشه",
         "Generate new password hash": "ایجاد گذرواژه جدید",
-        "Hide Perms/Owner columns": "مخفی کردن ستون های دسترسی و مالک"
+        "Hide Perms/Owner columns": "مخفی کردن ستون های دسترسی و مالک",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG"
       }
     },
     {
@@ -306,8 +308,8 @@
         "AdvancedEditor": "Улучшенный редактор",
         "Advanced Search": "Расширенный поиск",
         "already exists": "уже существует",
-        "AppName": "Файловый менеджер",
-        "AppTitle": "Файловый менеджер",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Archive": "Архив",
         "Archive not created": "Архив не создан",
         "Archive not unpacked": "Архив не распакован",
@@ -349,7 +351,7 @@
         "Error while deleting items": "Ошибка при удалении элементов",
         "Error while fetching archive info": "Ошибка при извлечении информации из архива",
         "Error while moving from": "Ошибка при перемещении из",
-        "Error while moving items" : "Ошибка при перемещении элементов",
+        "Error while moving items": "Ошибка при перемещении элементов",
         "Error while renaming from": "Ошибка при переименовании из",
         "Error: try again": "Ошибка: повторите попытку",
         "ERROR: Try again later!": "Ошибка: повторите попытку позже!",
@@ -467,8 +469,8 @@
         "Advanced Search": "Ricerca avanzata",
         "AdvancedEditor": "Editor avanzato",
         "already exists": "già esistente",
-        "AppName": "Tiny File Manager",
-        "AppTitle": "File Manager",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Archive not created": "Archivio non creato",
         "Archive not unpacked": "Archivio non decompresso",
         "Archive unpacked": "Archivio decompresso",
@@ -590,8 +592,8 @@
         "Actions": "Actions",
         "AdvancedEditor": "Editeur avancé",
         "Advanced Search": "Recherche avancée",
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Gestionnaire de fichiers",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Back": "Retour",
         "BackUp": "Sauvegarder",
         "Cancel": "Annuler",
@@ -656,8 +658,8 @@
       "name": "Español",
       "code": "es",
       "translation": {
-        "AppName": "Pequeño Administrador de Archivos",
-        "AppTitle": "Administrador de Archivos",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Iniciar Sesión",
         "Username": "Nombre de Usuario",
         "Password": "Contraseña",
@@ -712,8 +714,8 @@
       "name": "Galego",
       "code": "gl",
       "translation": {
-        "AppName": "Pequeno Administrador de Arquivos",
-        "AppTitle": "Administrador de Arquivos",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Iniciar Sesión",
         "Username": "Nome de Usuario",
         "Password": "Contrasinal",
@@ -768,8 +770,8 @@
       "name": "Català",
       "code": "ca",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Administrador d'Arxius",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Iniciar Sessió",
         "Username": "Nom d'Usuari",
         "Password": "Contrasenya",
@@ -841,8 +843,8 @@
       "name": "Deutsch",
       "code": "de",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Dateimanager",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Einloggen",
         "Username": "Benutzername",
         "Password": "Passwort",
@@ -959,8 +961,8 @@
       "name": "ภาษาไทย",
       "code": "th",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "ตัวจัดการไฟล์",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "เข้าสู่ระบบ",
         "Username": "ชื่อผู้ใช้งาน",
         "Password": "รหัสผ่าน",
@@ -1015,8 +1017,8 @@
       "name": "简体中文",
       "code": "zh-CN",
       "translation": {
-        "AppName": "文件管理器",
-        "AppTitle": "文件管理器",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "登录",
         "Username": "账号",
         "Password": "密码",
@@ -1168,8 +1170,8 @@
       "name": "中文(繁體)",
       "code": "zh-TW",
       "translation": {
-        "AppName": "檔案管理器",
-        "AppTitle": "檔案管理器",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "登入",
         "Username": "帳號",
         "Password": "密碼",
@@ -1241,8 +1243,8 @@
       "name": "Bahasa Indonesia",
       "code": "id",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Pengelola Berkas",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Masuk",
         "Username": "Nama pengguna",
         "Password": "Kata sandi",
@@ -1317,8 +1319,8 @@
       "name": "Ελληνικά",
       "code": "gr",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "File Manager",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Είσοδος",
         "Username": "Username",
         "Password": "Password",
@@ -1374,8 +1376,8 @@
       "name": "Português Brasileiro",
       "code": "pt_BR",
       "translation": {
-        "AppName": "Gerenciador de arquivos Tiny",
-        "AppTitle": "Gerenciador de arquivos",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Iniciar Sessão",
         "Username": "Nome de usuário",
         "Password": "Senha",
@@ -1492,8 +1494,8 @@
       "name": "Português Europeu",
       "code": "pt_PT",
       "translation": {
-        "AppName": "Gestor de Ficheiros",
-        "AppTitle": "Gestor de Ficheiros",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Iniciar sessão",
         "Username": "Nome de utilizador",
         "Password": "Palavra-passe",
@@ -1606,8 +1608,8 @@
       "name": "Polski",
       "code": "pl",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Menedżer plików",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Login",
         "Username": "Nazwa Użytkownika",
         "Password": "Hasło",
@@ -1662,8 +1664,8 @@
       "name": "Tiếng Việt",
       "code": "vi",
       "translation": {
-        "AppName": "Trình quản lí tệp Tiny",
-        "AppTitle": "Quản lý tệp",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Đăng nhập",
         "Username": "Tên đăng nhập",
         "Password": "Mật khẩu",
@@ -1781,8 +1783,8 @@
       "name": "Hebrew",
       "code": "he",
       "translation": {
-        "AppName": "סייר קבצים - טיני",
-        "AppTitle": "סייר קבצים",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "התחבר",
         "Username": "שם משתמש",
         "Password": "סיסמה",
@@ -1838,8 +1840,8 @@
       "name": "العربية",
       "code": "ar",
       "translation": {
-        "AppName": "مدير الملفات الصغير",
-        "AppTitle": "مدير الملفات",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "دخول",
         "Username": "اسم المستخدم",
         "Password": "كلمة المرور",
@@ -1904,8 +1906,8 @@
       "name": "Česky",
       "code": "cz",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "File Manager",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Přihlásit",
         "Username": "Přihlašovací jméno",
         "Password": "Heslo",
@@ -1975,8 +1977,8 @@
       "name": "Türkçe",
       "code": "tr",
       "translation": {
-        "AppName": "Tiny Dosya Yöneticisi",
-        "AppTitle": "Dosya Yöneticisi",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Giriş Yap",
         "Username": "Kullanıcı adı",
         "Password": "Parola",
@@ -2088,8 +2090,8 @@
       "name": "Slovensky",
       "code": "sk",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "File Manager",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Prihlásiť sa",
         "Username": "Prihlasovacie meno",
         "Password": "Heslo",
@@ -2149,8 +2151,8 @@
       "name": "Slovensko",
       "code": "sl",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Raziskovalec",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Prijava",
         "Username": "Uporabniško ime",
         "Password": "Geslo",
@@ -2208,8 +2210,8 @@
       "name": "Suomi",
       "code": "fi",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "File Manager",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Kirjautuminen",
         "Username": "Käyttäjänimi",
         "Password": "Salasana",
@@ -2271,8 +2273,8 @@
       "name": "Svenska",
       "code": "sv",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Filhanterare",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Logga in",
         "Username": "Användarnamn",
         "Password": "Lösenord",
@@ -2485,15 +2487,17 @@
         "free of": "사용 가능 용량",
         "Calculate folder size": "폴더 용량 표시",
         "Generate new password hash": "새 비밀번호 해시 생성",
-        "Hide Perms/Owner columns": "권한/소유자 숨기기"
+        "Hide Perms/Owner columns": "권한/소유자 숨기기",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG"
       }
     },
     {
       "name": "日本語",
       "code": "ja",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "File Manager",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "ログイン",
         "Username": "Username",
         "Password": "Password",
@@ -2570,8 +2574,8 @@
       "name": "Монгол",
       "code": "mn_MN",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Файл зохицуулагчr",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Нэвтрэх",
         "Username": "Хэрэглэгчийн нэр",
         "Password": "Нууц үг",
@@ -2648,8 +2652,8 @@
       "name": "Dutch",
       "code": "nl",
       "translation": {
-        "AppName": "Tiny File Manager",
-        "AppTitle": "Bestandsbeheer ",
+        "AppName": "SHOPAGG",
+        "AppTitle": "SHOPAGG",
         "Login": "Inloggen",
         "Username": "Gebruikersnaam",
         "Password": "Wachtwoord",
@@ -2791,7 +2795,7 @@
         "Actions": "Handlinger",
         "Advanced Search": "Avanceret søgning",
         "AdvancedEditor": "Advanceret Editor",
-        "AppTitle": "Filhåndtering",
+        "AppTitle": "SHOPAGG",
         "Archive not created": "Arkiv er ikke oprettet",
         "Archive not unpacked": "Arkiv er ikke pakket ud",
         "Archive unpacked": "Arkiv er udpakket",
@@ -2899,7 +2903,8 @@
         "not deleted": "ikke slettet",
         "not found!": "ikke fundet!",
         "password_hash not supported, Upgrade PHP version": "password_hash er ikke understøttet, opgrader PHP-versionen",
-        "to": "til"
+        "to": "til",
+        "AppName": "SHOPAGG"
       }
     },
     {
@@ -2910,7 +2915,7 @@
         "Actions": "একশন্স",
         "Advanced Search": "উন্নত অনুসন্ধান",
         "AdvancedEditor": "উন্নত এডিটর",
-        "AppTitle": "ফাইল ম্যানেজার",
+        "AppTitle": "SHOPAGG",
         "Archive not created": "আর্কাইভ তৈরি করা হয়নি",
         "Archive not unpacked": "আর্কাইভ প্যাক করা হয়নি",
         "Archive unpacked": "আর্কাইভ আনপ্যাক",
@@ -3018,7 +3023,8 @@
         "not deleted": "মুছে ফেলা হয়নি",
         "not found!": "পাওয়া যায় নি!",
         "password_hash not supported, Upgrade PHP version": "পাসওয়ার্ড_হ্যাশ সমর্থিত নয়, পিএইচপি ভার্সন আপগ্রেড করুন",
-        "to": "to"
+        "to": "to",
+        "AppName": "SHOPAGG"
       }
     }
   ]

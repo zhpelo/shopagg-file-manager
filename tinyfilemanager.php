@@ -1,19 +1,25 @@
 <?php
 // 默认配置
-$CONFIG = '{"lang":"zh","error_reporting":false,"show_hidden":false,"hide_Cols":false,"theme":"light"}';
+$CONFIG = '{"lang":"zh-CN","error_reporting":false,"show_hidden":false,"hide_Cols":false,"theme":"light"}';
 
 /**
- * H3K ~ Tiny File Manager V2.6
- * @author CCP Programmers
- * @github https://github.com/prasathmani/tinyfilemanager
- * @link https://tinyfilemanager.github.io
+ * SHOPAGG File Manager V2.6
+ * @author SHOPAGG
+ * @github https://github.com/zhpelo/shopagg-file-manager
+ * @link https://github.com/zhpelo/shopagg-file-manager
  */
 
 // TFM 版本
 define('VERSION', '2.6');
 
+// 品牌信息
+define('APP_BRAND', 'SHOPAGG');
+define('APP_REPO_URL', 'https://github.com/zhpelo/shopagg-file-manager');
+define('APP_DOCS_URL', 'https://github.com/zhpelo/shopagg-file-manager#readme');
+define('APP_ISSUES_URL', 'https://github.com/zhpelo/shopagg-file-manager/issues');
+
 // 应用标题
-define('APP_TITLE', 'Tiny File Manager');
+define('APP_TITLE', APP_BRAND);
 
 // --- 以下为可编辑配置（请谨慎修改） ---
 
@@ -206,7 +212,10 @@ if (!defined('FM_SESSION_ID')) {
 $cfg = new FM_Config();
 
 // 默认语言
-$lang = isset($cfg->data['lang']) ? $cfg->data['lang'] : 'zh';
+$lang = isset($cfg->data['lang']) ? $cfg->data['lang'] : 'zh-CN';
+if ($lang === 'zh') {
+    $lang = 'zh-CN';
+}
 
 // Show or hide files and folders that starts with a dot
 $show_hidden_files = isset($cfg->data['show_hidden']) ? $cfg->data['show_hidden'] : true;
@@ -224,8 +233,7 @@ define('FM_THEME', $theme);
 
 // 可用语言列表
 $lang_list = array(
-    'en' => 'English',
-    'zh' => '简体中文'
+    'zh-CN' => '简体中文',
 );
 
 if ($report_errors == true) {
@@ -422,17 +430,11 @@ function fm_show_shopagg_access_required_page($message)
         <div class="container h-100">
             <div class="row justify-content-md-center align-content-center h-100vh">
                 <div class="card-wrapper">
-                    <div class="card fat" data-bs-theme="<?php echo FM_THEME; ?>">
-                        <div class="card-body">
+                        <div class="card fat" data-bs-theme="<?php echo FM_THEME; ?>">
+                            <div class="card-body">
                             <div class="mb-3">
-                                <div class="brand">
-                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" M1008 width="100%" height="80px" viewBox="0 0 238.000000 140.000000" aria-label="H3K Tiny File Manager">
-                                        <g transform="translate(0.000000,140.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
-                                            <path d="M160 700 l0 -600 110 0 110 0 0 260 0 260 70 0 70 0 0 -260 0 -260 110 0 110 0 0 600 0 600 -110 0 -110 0 0 -260 0 -260 -70 0 -70 0 0 260 0 260 -110 0 -110 0 0 -600z" />
-                                            <path fill="#003500" d="M1008 1227 l-108 -72 0 -117 0 -118 110 0 110 0 0 110 0 110 70 0 70 0 0 -180 0 -180 -125 0 c-69 0 -125 -3 -125 -6 0 -3 23 -39 52 -80 l52 -74 73 0 73 0 0 -185 0 -185 -70 0 -70 0 0 115 0 115 -110 0 -110 0 0 -190 0 -190 181 0 181 0 109 73 108 72 1 181 0 181 -69 48 -68 49 68 50 69 49 0 249 0 248 -182 -1 -183 0 -107 -72z" />
-                                            <path d="M1640 700 l0 -600 110 0 110 0 0 208 0 208 35 34 35 34 35 -34 35 -34 0 -208 0 -208 110 0 110 0 0 212 0 213 -87 87 -88 88 88 88 87 87 0 213 0 212 -110 0 -110 0 0 -208 0 -208 -70 -69 -70 -69 0 277 0 277 -110 0 -110 0 0 -600z" />
-                                        </g>
-                                    </svg>
+                                <div class="brand brand-wordmark" aria-label="<?php echo fm_enc(APP_BRAND); ?>">
+                                    <?php echo fm_enc(APP_BRAND); ?>
                                 </div>
                                 <div class="text-center">
                                     <h1 class="card-title"><?php echo APP_TITLE; ?></h1>
@@ -447,7 +449,7 @@ function fm_show_shopagg_access_required_page($message)
                     </div>
                     <div class="footer text-center">
                         &mdash;&mdash; &copy;
-                        <a href="https://tinyfilemanager.github.io/" target="_blank" class="text-decoration-none text-muted" data-version="<?php echo VERSION; ?>">CCP Programmers</a> &mdash;&mdash;
+                        <a href="<?php echo APP_REPO_URL; ?>" target="_blank" class="text-decoration-none text-muted" data-version="<?php echo VERSION; ?>"><?php echo fm_enc(APP_BRAND); ?></a> &mdash;&mdash;
                     </div>
                 </div>
             </div>
@@ -1779,16 +1781,16 @@ if (isset($_GET['help'])) {
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
                         <p>
-                        <h3><a href="https://github.com/prasathmani/tinyfilemanager" target="_blank" class="app-v-title"> <?php echo lng("AppName")." ".VERSION; ?></a></h3>
+                        <h3><a href="<?php echo APP_REPO_URL; ?>" target="_blank" class="app-v-title"> <?php echo lng("AppName")." ".VERSION; ?></a></h3>
                         </p>
-                        <p>Author: PRAŚATH MANİ</p>
-                        <p>Mail Us: <a href="mailto:ccpprogrammers@gmail.com">ccpprogrammers [at] gmail [dot] com</a> </p>
+                        <p>Author: <?php echo fm_enc(APP_BRAND); ?></p>
+                        <p>Repository: <a href="<?php echo APP_REPO_URL; ?>" target="_blank"><?php echo fm_enc(APP_REPO_URL); ?></a></p>
                     </div>
                     <div class="col-xs-12 col-sm-6">
                         <div class="card">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><a href="https://github.com/prasathmani/tinyfilemanager/wiki" target="_blank"><i class="fa fa-question-circle"></i> <?php echo lng('Help Documents') ?> </a> </li>
-                                <li class="list-group-item"><a href="https://github.com/prasathmani/tinyfilemanager/issues" target="_blank"><i class="fa fa-bug"></i> <?php echo lng('Report Issue') ?></a></li>
+                                <li class="list-group-item"><a href="<?php echo APP_DOCS_URL; ?>" target="_blank"><i class="fa fa-question-circle"></i> <?php echo lng('Help Documents') ?> </a> </li>
+                                <li class="list-group-item"><a href="<?php echo APP_ISSUES_URL; ?>" target="_blank"><i class="fa fa-bug"></i> <?php echo lng('Report Issue') ?></a></li>
                                 <?php if (!FM_READONLY) { ?>
                                     <li class="list-group-item"><a href="javascript:show_new_pwd();"><i class="fa fa-lock"></i> <?php echo lng('Generate new password hash') ?></a></li>
                                 <?php } ?>
@@ -2446,9 +2448,9 @@ $all_files_size = 0;
                     <a href="javascript:document.getElementById('a-copy').click();" class="btn btn-small btn-outline-primary btn-2"><i class="fa fa-files-o"></i> <?php echo lng('Copy') ?> </a>
                 </div>
             </div>
-            <div class="col-3 d-none d-sm-block"><a href="https://tinyfilemanager.github.io" target="_blank" class="float-right text-muted"><?php echo lng("AppName")." ".VERSION; ?></a></div>
+            <div class="col-3 d-none d-sm-block"><a href="<?php echo APP_REPO_URL; ?>" target="_blank" class="float-right text-muted"><?php echo lng("AppName")." ".VERSION; ?></a></div>
         <?php else: ?>
-            <div class="col-12"><a href="https://tinyfilemanager.github.io" target="_blank" class="float-right text-muted"><?php echo lng("AppName")." ".VERSION; ?></a></div>
+            <div class="col-12"><a href="<?php echo APP_REPO_URL; ?>" target="_blank" class="float-right text-muted"><?php echo lng("AppName")." ".VERSION; ?></a></div>
         <?php endif; ?>
     </div>
 </form>
@@ -2807,15 +2809,21 @@ function fm_is_exclude_items($name, $path)
 function fm_get_translations($tr)
 {
     try {
-        $content = @file_get_contents('translation.json');
+        $content = @file_get_contents(__DIR__ . '/translation.json');
         if ($content !== FALSE) {
             $lng = json_decode($content, TRUE);
             global $lang_list;
             foreach ($lng["language"] as $key => $value) {
                 $code = $value["code"];
                 $lang_list[$code] = $value["name"];
-                if ($tr)
+                if ($tr) {
                     $tr[$code] = $value["translation"];
+                }
+
+                if ($code === 'zh-CN') {
+                    $lang_list['zh'] = $value["name"];
+                    $tr['zh'] = $value["translation"];
+                }
             }
             return $tr;
         }
@@ -3934,8 +3942,8 @@ function fm_show_header_login()
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Web based File Manager in PHP, Manage your files efficiently and easily with Tiny File Manager">
-        <meta name="author" content="CCP Programmers">
+        <meta name="description" content="SHOPAGG 文件管理器">
+        <meta name="author" content="SHOPAGG">
         <meta name="robots" content="noindex, nofollow">
         <meta name="googlebot" content="noindex">
         <?php if ($favicon_path) {
@@ -3953,15 +3961,17 @@ function fm_show_header_login()
             }
 
             .fm-login-page .brand {
-                width: 121px;
-                overflow: hidden;
                 margin: 0 auto;
                 position: relative;
-                z-index: 1
+                z-index: 1;
+                text-align: center;
             }
 
-            .fm-login-page .brand img {
-                width: 100%
+            .fm-login-page .brand-wordmark {
+                font-size: 38px;
+                font-weight: 800;
+                letter-spacing: .18em;
+                color: #0f172a;
             }
 
             .fm-login-page .card-wrapper {
@@ -4040,9 +4050,8 @@ function fm_show_header_login()
                 background-color: #2f2a2a;
             }
 
-            .theme-dark svg g,
-            .theme-dark svg path {
-                fill: #ffffff;
+            .theme-dark .brand-wordmark {
+                color: #ffffff;
             }
 
             .theme-dark .form-control {
@@ -4097,14 +4106,14 @@ function fm_show_header_login()
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Web based File Manager in PHP, Manage your files efficiently and easily with Tiny File Manager">
-        <meta name="author" content="CCP Programmers">
+        <meta name="description" content="SHOPAGG 文件管理器">
+        <meta name="author" content="SHOPAGG">
         <meta name="robots" content="noindex, nofollow">
         <meta name="googlebot" content="noindex">
         <?php if ($favicon_path) {
             echo '<link rel="icon" href="' . fm_enc($favicon_path) . '" type="image/png">';
         } ?>
-        <title><?php echo fm_enc(APP_TITLE) ?> | <?php echo (isset($_GET['view']) ? $_GET['view'] : ((isset($_GET['edit'])) ? $_GET['edit'] : "H3K")); ?></title>
+        <title><?php echo fm_enc(APP_TITLE) ?> | <?php echo (isset($_GET['view']) ? $_GET['view'] : ((isset($_GET['edit'])) ? $_GET['edit'] : APP_BRAND)); ?></title>
         <?php print_external('pre-jsdelivr'); ?>
         <?php print_external('pre-cloudflare'); ?>
         <?php print_external('css-bootstrap'); ?>
@@ -5598,122 +5607,129 @@ function fm_show_header_login()
     {
         global $lang;
 
-        // English Language
-        $tr['en']['AppName']        = 'Tiny File Manager';
-        $tr['en']['AppTitle']       = 'File Manager';
-        $tr['en']['Login']          = 'Sign in';
-        $tr['en']['Username']       = 'Username';
-        $tr['en']['Password']       = 'Password';
-        $tr['en']['Logout']         = 'Sign Out';
-        $tr['en']['Move']           = 'Move';
-        $tr['en']['Copy']           = 'Copy';
-        $tr['en']['Save']           = 'Save';
-        $tr['en']['SelectAll']      = 'Select all';
-        $tr['en']['UnSelectAll']    = 'Unselect all';
-        $tr['en']['File']           = 'File';
-        $tr['en']['Back']           = 'Back';
-        $tr['en']['Size']           = 'Size';
-        $tr['en']['Perms']          = 'Perms';
-        $tr['en']['Modified']       = 'Modified';
-        $tr['en']['Owner']          = 'Owner';
-        $tr['en']['Search']         = 'Search';
-        $tr['en']['NewItem']        = 'New Item';
-        $tr['en']['Folder']         = 'Folder';
-        $tr['en']['Delete']         = 'Delete';
-        $tr['en']['Rename']         = 'Rename';
-        $tr['en']['CopyTo']         = 'Copy to';
-        $tr['en']['DirectLink']     = 'Direct link';
-        $tr['en']['UploadingFiles'] = 'Upload Files';
-        $tr['en']['ChangePermissions']  = 'Change Permissions';
-        $tr['en']['Copying']        = 'Copying';
-        $tr['en']['CreateNewItem']  = 'Create New Item';
-        $tr['en']['Name']           = 'Name';
-        $tr['en']['AdvancedEditor'] = 'Advanced Editor';
-        $tr['en']['Actions']        = 'Actions';
-        $tr['en']['Folder is empty'] = 'Folder is empty';
-        $tr['en']['Upload']         = 'Upload';
-        $tr['en']['Cancel']         = 'Cancel';
-        $tr['en']['InvertSelection'] = 'Invert Selection';
-        $tr['en']['DestinationFolder']  = 'Destination Folder';
-        $tr['en']['ItemType']       = 'Item Type';
-        $tr['en']['ItemName']       = 'Item Name';
-        $tr['en']['CreateNow']      = 'Create Now';
-        $tr['en']['Download']       = 'Download';
-        $tr['en']['Open']           = 'Open';
-        $tr['en']['UnZip']          = 'UnZip';
-        $tr['en']['UnZipToFolder']  = 'UnZip to folder';
-        $tr['en']['Edit']           = 'Edit';
-        $tr['en']['NormalEditor']   = 'Normal Editor';
-        $tr['en']['BackUp']         = 'Back Up';
-        $tr['en']['SourceFolder']   = 'Source Folder';
-        $tr['en']['Files']          = 'Files';
-        $tr['en']['Move']           = 'Move';
-        $tr['en']['Change']         = 'Change';
-        $tr['en']['Settings']       = 'Settings';
-        $tr['en']['Language']       = 'Language';
-        $tr['en']['ErrorReporting'] = 'Error Reporting';
-        $tr['en']['ShowHiddenFiles'] = 'Show Hidden Files';
-        $tr['en']['Help']           = 'Help';
-        $tr['en']['Created']        = 'Created';
-        $tr['en']['Help Documents'] = 'Help Documents';
-        $tr['en']['Report Issue']   = 'Report Issue';
-        $tr['en']['Generate']       = 'Generate';
-        $tr['en']['FullSize']       = 'Full Size';
-        $tr['en']['HideColumns']    = 'Hide Perms/Owner columns';
-        $tr['en']['You are logged in'] = 'You are logged in';
-        $tr['en']['Nothing selected']  = 'Nothing selected';
-        $tr['en']['Paths must be not equal']    = 'Paths must be not equal';
-        $tr['en']['Renamed from']       = 'Renamed from';
-        $tr['en']['Archive not unpacked'] = 'Archive not unpacked';
-        $tr['en']['Deleted']            = 'Deleted';
-        $tr['en']['Archive not created'] = 'Archive not created';
-        $tr['en']['Copied from']        = 'Copied from';
-        $tr['en']['Permissions changed'] = 'Permissions changed';
-        $tr['en']['to']                 = 'to';
-        $tr['en']['Saved Successfully'] = 'Saved Successfully';
-        $tr['en']['not found!']         = 'not found!';
-        $tr['en']['File Saved Successfully']    = 'File Saved Successfully';
-        $tr['en']['Archive']            = 'Archive';
-        $tr['en']['Permissions not changed']    = 'Permissions not changed';
-        $tr['en']['Select folder']      = 'Select folder';
-        $tr['en']['Source path not defined']    = 'Source path not defined';
-        $tr['en']['already exists']     = 'already exists';
-        $tr['en']['Error while moving from']    = 'Error while moving from';
-        $tr['en']['Create archive?']    = 'Create archive?';
-        $tr['en']['Invalid file or folder name']    = 'Invalid file or folder name';
-        $tr['en']['Archive unpacked']   = 'Archive unpacked';
-        $tr['en']['File extension is not allowed']  = 'File extension is not allowed';
-        $tr['en']['Root path']          = 'Root path';
-        $tr['en']['Error while renaming from']  = 'Error while renaming from';
-        $tr['en']['File not found']     = 'File not found';
-        $tr['en']['Error while deleting items'] = 'Error while deleting items';
-        $tr['en']['Moved from']         = 'Moved from';
-        $tr['en']['Generate new password hash'] = 'Generate new password hash';
-        $tr['en']['Login failed. Invalid username or password'] = 'Login failed. Invalid username or password';
-        $tr['en']['password_hash not supported, Upgrade PHP version'] = 'password_hash not supported, Upgrade PHP version';
-        $tr['en']['Advanced Search']    = 'Advanced Search';
-        $tr['en']['Error while copying from']    = 'Error while copying from';
-        $tr['en']['Invalid characters in file name']                = 'Invalid characters in file name';
-        $tr['en']['FILE EXTENSION IS NOT SUPPORTED']                = 'FILE EXTENSION IS NOT SUPPORTED';
-        $tr['en']['Selected files and folder deleted']              = 'Selected files and folder deleted';
-        $tr['en']['Error while fetching archive info']              = 'Error while fetching archive info';
-        $tr['en']['Delete selected files and folders?']             = 'Delete selected files and folders?';
-        $tr['en']['Search file in folder and subfolders...']        = 'Search file in folder and subfolders...';
-        $tr['en']['Access denied. IP restriction applicable']       = 'Access denied. IP restriction applicable';
-        $tr['en']['Invalid characters in file or folder name']      = 'Invalid characters in file or folder name';
-        $tr['en']['Operations with archives are not available']     = 'Operations with archives are not available';
-        $tr['en']['File or folder with this path already exists']   = 'File or folder with this path already exists';
-        $tr['en']['Are you sure want to rename?']                   = 'Are you sure you want to rename?';
-        $tr['en']['Are you sure want to']                           = 'Are you sure want to';
-        $tr['en']['Date Modified']                                  = 'Date Modified';
-        $tr['en']['File size']                                      = 'File size';
-        $tr['en']['MIME-type']                                      = 'MIME-type';
-        $tr['en']['a files']                                        = 'files';
+        // 默认内置回退语言：简体中文
+        $tr['en']['AppName']        = APP_BRAND;
+        $tr['en']['AppTitle']       = APP_BRAND;
+        $tr['en']['Login']          = '登录';
+        $tr['en']['Username']       = '账号';
+        $tr['en']['Password']       = '密码';
+        $tr['en']['Logout']         = '退出';
+        $tr['en']['Move']           = '移动';
+        $tr['en']['Copy']           = '复制';
+        $tr['en']['Save']           = '保存';
+        $tr['en']['SelectAll']      = '全选';
+        $tr['en']['UnSelectAll']    = '取消全选';
+        $tr['en']['File']           = '文件';
+        $tr['en']['Back']           = '取消';
+        $tr['en']['Size']           = '大小';
+        $tr['en']['Perms']          = '权限';
+        $tr['en']['Modified']       = '修改时间';
+        $tr['en']['Owner']          = '拥有者';
+        $tr['en']['Search']         = '搜索';
+        $tr['en']['NewItem']        = '创建新文件/文件夹';
+        $tr['en']['Folder']         = '文件夹';
+        $tr['en']['Delete']         = '删除';
+        $tr['en']['Rename']         = '重命名';
+        $tr['en']['CopyTo']         = '复制到';
+        $tr['en']['DirectLink']     = '直链';
+        $tr['en']['UploadingFiles'] = '上传';
+        $tr['en']['ChangePermissions']  = '修改权限';
+        $tr['en']['Copying']        = '复制中';
+        $tr['en']['CreateNewItem']  = '创建新文件';
+        $tr['en']['Name']           = '文件名';
+        $tr['en']['AdvancedEditor'] = '高级编辑器';
+        $tr['en']['Actions']        = '执行操作';
+        $tr['en']['Folder is empty'] = '文件夹为空';
+        $tr['en']['Upload']         = '上传';
+        $tr['en']['Cancel']         = '取消';
+        $tr['en']['InvertSelection'] = '反向选择';
+        $tr['en']['DestinationFolder']  = '目标文件夹';
+        $tr['en']['ItemType']       = '文件类型';
+        $tr['en']['ItemName']       = '创建名称';
+        $tr['en']['CreateNow']      = '创建';
+        $tr['en']['Download']       = '下载';
+        $tr['en']['Open']           = '打开';
+        $tr['en']['UnZip']          = '解压缩';
+        $tr['en']['UnZipToFolder']  = '解压至目标文件夹';
+        $tr['en']['Edit']           = '编辑';
+        $tr['en']['NormalEditor']   = '编辑器';
+        $tr['en']['BackUp']         = '备份';
+        $tr['en']['SourceFolder']   = '源文件夹';
+        $tr['en']['Files']          = '文件';
+        $tr['en']['Change']         = '修改';
+        $tr['en']['Settings']       = '设置';
+        $tr['en']['Language']       = '语言';
+        $tr['en']['ErrorReporting'] = '上传错误报告';
+        $tr['en']['ShowHiddenFiles'] = '显示隐藏文件';
+        $tr['en']['Help']           = '帮助';
+        $tr['en']['Created']        = '创建';
+        $tr['en']['Help Documents'] = '帮助文档';
+        $tr['en']['Report Issue']   = '报告问题';
+        $tr['en']['Generate']       = '生成';
+        $tr['en']['FullSize']       = '所有文件大小';
+        $tr['en']['HideColumns']    = '隐藏权限&拥有者';
+        $tr['en']['You are logged in'] = '您已登录';
+        $tr['en']['Nothing selected']  = '没有任何选定项';
+        $tr['en']['Paths must be not equal']    = '路径不能相同';
+        $tr['en']['Renamed from']       = '生成';
+        $tr['en']['Archive not unpacked'] = '解压失败';
+        $tr['en']['Deleted']            = '删除';
+        $tr['en']['Archive not created'] = '压缩包创建失败';
+        $tr['en']['Copied from']        = '复制';
+        $tr['en']['Permissions changed'] = '权限已修改';
+        $tr['en']['to']                 = '到';
+        $tr['en']['Saved Successfully'] = '保存成功';
+        $tr['en']['not found!']         = '没有找到！';
+        $tr['en']['File Saved Successfully']    = '文件保存成功';
+        $tr['en']['Archive']            = '压缩包';
+        $tr['en']['Permissions not changed']    = '权限修改失败';
+        $tr['en']['Select folder']      = '选择文件夹';
+        $tr['en']['Source path not defined']    = '没有定义源路径';
+        $tr['en']['already exists']     = '已存在';
+        $tr['en']['Error while moving from']    = '移动失败';
+        $tr['en']['Create archive?']    = '创建压缩包？';
+        $tr['en']['Invalid file or folder name']    = '无效的文件或文件夹名';
+        $tr['en']['Archive unpacked']   = '压缩包已经解压';
+        $tr['en']['File extension is not allowed']  = '该文件格式不支持';
+        $tr['en']['Root path']          = '根路径';
+        $tr['en']['Error while renaming from']  = '重命名失败';
+        $tr['en']['File not found']     = '找不到文件';
+        $tr['en']['Error while deleting items'] = '删除失败';
+        $tr['en']['Moved from']         = '移动';
+        $tr['en']['Generate new password hash'] = '生成新的hash密码';
+        $tr['en']['Login failed. Invalid username or password'] = '登录失败。用户名或密码无效';
+        $tr['en']['password_hash not supported, Upgrade PHP version'] = '不支持password_hash,请升级PHP版本';
+        $tr['en']['Advanced Search']    = '高级搜索';
+        $tr['en']['Error while copying from']    = '复制失败';
+        $tr['en']['Invalid characters in file name']                = '无效的文件名';
+        $tr['en']['FILE EXTENSION IS NOT SUPPORTED']                = '该文件格式不支持';
+        $tr['en']['Selected files and folder deleted']              = '已删除选择的文件和目录';
+        $tr['en']['Error while fetching archive info']              = '获取压缩包信息失败';
+        $tr['en']['Delete selected files and folders?']             = '确认删除已选择的文件和目录？';
+        $tr['en']['Search file in folder and subfolders...']        = '在文件夹和子目录中搜索文件...';
+        $tr['en']['Access denied. IP restriction applicable']       = '访问被拒绝。适用的IP限制';
+        $tr['en']['Invalid characters in file or folder name']      = '无效的文件或文件夹名称';
+        $tr['en']['Operations with archives are not available']     = '压缩包操作不可用';
+        $tr['en']['File or folder with this path already exists']   = '该路径的文件或文件夹已经存在';
+        $tr['en']['Are you sure want to rename?']                   = '您确认要重命名吗？';
+        $tr['en']['Are you sure want to']                           = '您确定要';
+        $tr['en']['Date Modified']                                  = '修改时间';
+        $tr['en']['File size']                                      = '文件大小';
+        $tr['en']['MIME-type']                                      = '文件类型';
+        $tr['en']['a files']                                        = '文件';
 
         $i18n = fm_get_translations($tr);
         $tr = $i18n ? $i18n : $tr;
 
-        if (!strlen($lang)) $lang = 'en';
+        foreach ($tr as &$translations) {
+            if (is_array($translations)) {
+                $translations['AppName'] = APP_BRAND;
+                $translations['AppTitle'] = APP_BRAND;
+            }
+        }
+        unset($translations);
+
+        if (!strlen($lang)) $lang = 'zh-CN';
         if (isset($tr[$lang][$txt])) return fm_enc($tr[$lang][$txt]);
         else if (isset($tr['en'][$txt])) return fm_enc($tr['en'][$txt]);
         else return "$txt";
