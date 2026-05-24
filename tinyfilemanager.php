@@ -1,6 +1,6 @@
 <?php
-// 默认配置
-$CONFIG = '{"lang":"zh-CN","error_reporting":false,"show_hidden":false,"hide_Cols":false,"theme":"light"}';
+//Default Configuration
+$CONFIG = '{"lang":"zh-CN","error_reporting":false,"show_hidden":false,"hide_Cols":true,"theme":"light"}';
 
 /**
  * SHOPAGG File Manager V2.6
@@ -14,19 +14,20 @@ define('VERSION', '2.6');
 
 // 品牌信息
 define('APP_BRAND', 'SHOPAGG');
-define('APP_REPO_URL', 'https://github.com/zhpelo/shopagg-file-manager');
-define('APP_DOCS_URL', 'https://github.com/zhpelo/shopagg-file-manager#readme');
-define('APP_ISSUES_URL', 'https://github.com/zhpelo/shopagg-file-manager/issues');
+define('APP_REPO_URL', 'https://www.shopagg.com/');
+define('APP_DOCS_URL', 'https://forum.shopagg.com/');
+define('APP_ISSUES_URL', 'https://v3.shopagg.com/questions');
 
 // 应用标题
-define('APP_TITLE', APP_BRAND);
+define('APP_TITLE', '站点文件管理器');
 
 // --- 以下为可编辑配置（请谨慎修改） ---
 
 // 登录认证（用户名/密码）
 // 设为 true/false 启用或禁用
 // 与 IP 白名单/黑名单相互独立
-$use_auth = true;
+// $use_auth = true;
+$use_auth = false;
 
 // 登录用户名与密码
 // SHOPAGG 授权访问模式使用固定的内部会话用户，不对外开放手工登录
@@ -107,7 +108,9 @@ $favicon_path = '';
 
 // 从列表中排除的文件和文件夹
 // 例如 array('myfile.html', 'personal-folder', '*.php', '/path/to/folder', ...)
-$exclude_items = array();
+$exclude_items = array(
+    basename(__FILE__)
+);
 
 // 在线文件预览查看器
 // 可选值：'google', 'microsoft' 或 false
@@ -440,7 +443,7 @@ function fm_show_shopagg_access_required_page($message)
                             </div>
                             <hr />
                             <div class="alert alert-warning mb-0" role="alert">
-                                请返回 SHOPAGG 控制台生成 2 小时授权链接后再访问。
+                                访问被禁止！
                             </div>
                         </div>
                     </div>
@@ -488,26 +491,26 @@ if ($ip_ruleset != 'OFF') {
 }
 
 // Checking if the user is logged in or not. If not, it will show the login form.
-// if ($use_auth) {
-//     if (fm_has_valid_shopagg_access_session($auth_users)) {
-//         // Logged
-//     } elseif (fm_try_shopagg_authorize_request($auth_users, $shopagg_access_secret, $shopagg_access_link_ttl_seconds)) {
-//         $targetPath = isset($_GET['p']) ? fm_clean_path((string) $_GET['p']) : '';
-//         fm_redirect(FM_SELF_URL . '?p=' . urlencode($targetPath));
-//     } else {
-//         fm_forget_shopagg_access_session();
+if ($use_auth) {
+    if (fm_has_valid_shopagg_access_session($auth_users)) {
+        // Logged
+    } elseif (fm_try_shopagg_authorize_request($auth_users, $shopagg_access_secret, $shopagg_access_link_ttl_seconds)) {
+        $targetPath = isset($_GET['p']) ? fm_clean_path((string) $_GET['p']) : '';
+        fm_redirect(FM_SELF_URL . '?p=' . urlencode($targetPath));
+    } else {
+        fm_forget_shopagg_access_session();
 
-//         if (isset($_POST['fm_usr'], $_POST['fm_pwd'])) {
-//             fm_show_shopagg_access_required_page('文件管理器已禁用手工登录，请返回 SHOPAGG 控制台重新生成授权链接。');
-//         }
+        if (isset($_POST['fm_usr'], $_POST['fm_pwd'])) {
+            fm_show_shopagg_access_required_page('文件管理器已禁用手工登录，请返回 SHOPAGG 控制台重新生成授权链接。');
+        }
 
-//         if (isset($_GET['shopagg_expires']) || isset($_GET['shopagg_ip']) || isset($_GET['shopagg_sig'])) {
-//             fm_show_shopagg_access_required_page('授权链接无效、已过期，或当前访问 IP 已变化，请返回 SHOPAGG 控制台重新生成。');
-//         }
+        if (isset($_GET['shopagg_expires']) || isset($_GET['shopagg_ip']) || isset($_GET['shopagg_sig'])) {
+            fm_show_shopagg_access_required_page('授权链接无效、已过期，或当前访问 IP 已变化，请返回 SHOPAGG 控制台重新生成。');
+        }
 
-//         fm_show_shopagg_access_required_page('请从 SHOPAGG 控制台生成 2 小时授权链接访问文件管理器。');
-//     }
-// }
+        fm_show_shopagg_access_required_page('请从 SHOPAGG 的站点控制台访问文件管理器。');
+    }
+}
 
 // update root path
 if ($use_auth && isset($_SESSION[FM_SESSION_ID]['logged'])) {
