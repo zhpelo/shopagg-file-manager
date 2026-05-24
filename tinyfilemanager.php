@@ -29,16 +29,16 @@ define('APP_TITLE', APP_BRAND);
 $use_auth = true;
 
 // 登录用户名与密码
-// Shopagg 授权访问模式使用固定的内部会话用户，不对外开放手工登录
+// SHOPAGG 授权访问模式使用固定的内部会话用户，不对外开放手工登录
 $auth_users = array(
     '__shopagg_access__' => '$2y$10$78oBVCQd7mH/qbS6yjK1gOYhIc7k7P8B3xYJf2C9Q8fl5BvUysUFS'
 );
 
-// Shopagg 授权访问密钥
+// SHOPAGG 授权访问密钥
 // 由平台在部署文件管理器时自动写入
 $shopagg_access_secret = '';
 
-// Shopagg 授权链接有效期（秒）
+// SHOPAGG 授权链接有效期（秒）
 $shopagg_access_link_ttl_seconds = 7200;
 
 // 只读用户
@@ -213,9 +213,6 @@ $cfg = new FM_Config();
 
 // 默认语言
 $lang = isset($cfg->data['lang']) ? $cfg->data['lang'] : 'zh-CN';
-if ($lang === 'zh') {
-    $lang = 'zh-CN';
-}
 
 // Show or hide files and folders that starts with a dot
 $show_hidden_files = isset($cfg->data['show_hidden']) ? $cfg->data['show_hidden'] : true;
@@ -443,7 +440,7 @@ function fm_show_shopagg_access_required_page($message)
                             </div>
                             <hr />
                             <div class="alert alert-warning mb-0" role="alert">
-                                请返回 Shopagg 控制台生成 2 小时授权链接后再访问。
+                                请返回 SHOPAGG 控制台生成 2 小时授权链接后再访问。
                             </div>
                         </div>
                     </div>
@@ -491,26 +488,26 @@ if ($ip_ruleset != 'OFF') {
 }
 
 // Checking if the user is logged in or not. If not, it will show the login form.
-if ($use_auth) {
-    if (fm_has_valid_shopagg_access_session($auth_users)) {
-        // Logged
-    } elseif (fm_try_shopagg_authorize_request($auth_users, $shopagg_access_secret, $shopagg_access_link_ttl_seconds)) {
-        $targetPath = isset($_GET['p']) ? fm_clean_path((string) $_GET['p']) : '';
-        fm_redirect(FM_SELF_URL . '?p=' . urlencode($targetPath));
-    } else {
-        fm_forget_shopagg_access_session();
+// if ($use_auth) {
+//     if (fm_has_valid_shopagg_access_session($auth_users)) {
+//         // Logged
+//     } elseif (fm_try_shopagg_authorize_request($auth_users, $shopagg_access_secret, $shopagg_access_link_ttl_seconds)) {
+//         $targetPath = isset($_GET['p']) ? fm_clean_path((string) $_GET['p']) : '';
+//         fm_redirect(FM_SELF_URL . '?p=' . urlencode($targetPath));
+//     } else {
+//         fm_forget_shopagg_access_session();
 
-        if (isset($_POST['fm_usr'], $_POST['fm_pwd'])) {
-            fm_show_shopagg_access_required_page('文件管理器已禁用手工登录，请返回 Shopagg 控制台重新生成授权链接。');
-        }
+//         if (isset($_POST['fm_usr'], $_POST['fm_pwd'])) {
+//             fm_show_shopagg_access_required_page('文件管理器已禁用手工登录，请返回 SHOPAGG 控制台重新生成授权链接。');
+//         }
 
-        if (isset($_GET['shopagg_expires']) || isset($_GET['shopagg_ip']) || isset($_GET['shopagg_sig'])) {
-            fm_show_shopagg_access_required_page('授权链接无效、已过期，或当前访问 IP 已变化，请返回 Shopagg 控制台重新生成。');
-        }
+//         if (isset($_GET['shopagg_expires']) || isset($_GET['shopagg_ip']) || isset($_GET['shopagg_sig'])) {
+//             fm_show_shopagg_access_required_page('授权链接无效、已过期，或当前访问 IP 已变化，请返回 SHOPAGG 控制台重新生成。');
+//         }
 
-        fm_show_shopagg_access_required_page('请从 Shopagg 控制台生成 2 小时授权链接访问文件管理器。');
-    }
-}
+//         fm_show_shopagg_access_required_page('请从 SHOPAGG 控制台生成 2 小时授权链接访问文件管理器。');
+//     }
+// }
 
 // update root path
 if ($use_auth && isset($_SESSION[FM_SESSION_ID]['logged'])) {
@@ -2820,10 +2817,6 @@ function fm_get_translations($tr)
                     $tr[$code] = $value["translation"];
                 }
 
-                if ($code === 'zh-CN') {
-                    $lang_list['zh'] = $value["name"];
-                    $tr['zh'] = $value["translation"];
-                }
             }
             return $tr;
         }
@@ -3781,7 +3774,7 @@ class FM_Config
         global $root_path, $root_url, $CONFIG;
         $fm_url = $root_url . $_SERVER["PHP_SELF"];
         $this->data = array(
-            'lang' => 'zh',
+            'lang' => 'zh-CN',
             'error_reporting' => true,
             'show_hidden' => true
         );
