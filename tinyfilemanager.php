@@ -1,6 +1,6 @@
 <?php
-//Default Configuration
-$CONFIG = '{"lang":"en","error_reporting":false,"show_hidden":false,"hide_Cols":false,"theme":"light"}';
+// 默认配置
+$CONFIG = '{"lang":"zh","error_reporting":false,"show_hidden":false,"hide_Cols":false,"theme":"light"}';
 
 /**
  * H3K ~ Tiny File Manager V2.6
@@ -9,140 +9,143 @@ $CONFIG = '{"lang":"en","error_reporting":false,"show_hidden":false,"hide_Cols":
  * @link https://tinyfilemanager.github.io
  */
 
-//TFM version
+// TFM 版本
 define('VERSION', '2.6');
 
-//Application Title
+// 应用标题
 define('APP_TITLE', 'Tiny File Manager');
 
-// --- EDIT BELOW CONFIGURATION CAREFULLY ---
+// --- 以下为可编辑配置（请谨慎修改） ---
 
-// Auth with login/password
-// set true/false to enable/disable it
-// Is independent from IP white- and blacklisting
+// 登录认证（用户名/密码）
+// 设为 true/false 启用或禁用
+// 与 IP 白名单/黑名单相互独立
 $use_auth = true;
 
-// Login user name and password
-// Users: array('Username' => 'Password', 'Username2' => 'Password2', ...)
-// Generate secure password hash - https://tinyfilemanager.github.io/docs/pwd.html
+// 登录用户名与密码
+// Shopagg 授权访问模式使用固定的内部会话用户，不对外开放手工登录
 $auth_users = array(
-    'admin' => '$2y$10$/K.hjNr84lLNDt8fTXjoI.DBp6PpeyoJ.mGwrrLuCZfAwfSAGqhOW', //admin@123
-    'user' => '$2y$10$Fg6Dz8oH9fPoZ2jJan5tZuv6Z4Kp7avtQ9bDfrdRntXtPeiMAZyGO' //12345
+    '__shopagg_access__' => '$2y$10$78oBVCQd7mH/qbS6yjK1gOYhIc7k7P8B3xYJf2C9Q8fl5BvUysUFS'
 );
 
-// Readonly users
-// e.g. array('users', 'guest', ...)
-$readonly_users = array(
-    'user'
-);
+// Shopagg 授权访问密钥
+// 由平台在部署文件管理器时自动写入
+$shopagg_access_secret = '';
 
-// Global readonly, including when auth is not being used
+// Shopagg 授权链接有效期（秒）
+$shopagg_access_link_ttl_seconds = 7200;
+
+// 只读用户
+// 例如 array('users', 'guest', ...)
+$readonly_users = array();
+
+// 全局只读（包括在未启用认证时）
 $global_readonly = false;
 
-// user specific directories
-// array('Username' => 'Directory path', 'Username2' => 'Directory path', ...)
+// 用户专属目录
+// array('用户名' => '目录路径', '用户名2' => '目录路径', ...)
 $directories_users = array();
 
-// Enable highlight.js (https://highlightjs.org/) on view's page
+// 在查看页面启用 highlight.js (https://highlightjs.org/)
 $use_highlightjs = true;
 
-// highlight.js style
-// for dark theme use 'ir-black'
+// highlight.js 主题样式
+// 暗色主题可使用 'ir-black'
 $highlightjs_style = 'vs';
 
-// Enable ace.js (https://ace.c9.io/) on view's page
+// 在查看页面启用 ace.js 编辑器 (https://ace.c9.io/)
 $edit_files = true;
 
-// Default timezone for date() and time()
-// Doc - http://php.net/manual/en/timezones.php
+// 默认时区（用于 date() 与 time()）
+// 参考文档 - http://php.net/manual/en/timezones.php
 $default_timezone = 'Etc/UTC'; // UTC
 
-// Root path for file manager
-// use absolute path of directory i.e: '/var/www/folder' or $_SERVER['DOCUMENT_ROOT'].'/folder'
-//make sure update $root_url in next section
+// 文件管理器根路径
+// 使用目录的绝对路径，例如：'/var/www/folder' 或 $_SERVER['DOCUMENT_ROOT'].'/folder'
+// 请确保在下一节更新 $root_url
 $root_path = $_SERVER['DOCUMENT_ROOT'];
 
-// Root url for links in file manager.Relative to $http_host. Variants: '', 'path/to/subfolder'
-// Will not working if $root_path will be outside of server document root
+// 文件管理器中链接的根 URL，相对于 $http_host。可选值：'', 'path/to/subfolder'
+// 若 $root_path 位于服务器文档根目录之外，此项可能无法工作
 $root_url = '';
 
-// Server hostname. Can set manually if wrong
-// $_SERVER['HTTP_HOST'].'/folder'
+// 服务器主机名。如果 $_SERVER['HTTP_HOST'] 不正确，可手动设置
+// 示例： $_SERVER['HTTP_HOST'].'/folder'
 $http_host = $_SERVER['HTTP_HOST'];
 
-// input encoding for iconv
+// iconv 输入编码
 $iconv_input_encoding = 'UTF-8';
 
-// date() format for file modification date
-// Doc - https://www.php.net/manual/en/function.date.php
+// 文件修改日期的 date() 格式
+// 文档 - https://www.php.net/manual/en/function.date.php
 $datetime_format = 'm/d/Y g:i A';
 
-// Path display mode when viewing file information
-// 'full' => show full path
-// 'relative' => show path relative to root_path
-// 'host' => show path on the host
+// 路径显示模式（查看文件信息时）
+// 'full' => 显示完整路径
+// 'relative' => 显示相对于 root_path 的路径
+// 'host' => 显示主机上的路径
 $path_display_mode = 'full';
 
-// Allowed file extensions for create and rename files
-// e.g. 'txt,html,css,js'
+// 允许创建和重命名的文件扩展名
+// 例如 'txt,html,css,js'
 $allowed_file_extensions = '';
 
-// Allowed file extensions for upload files
-// e.g. 'gif,png,jpg,html,txt'
+// 允许上传的文件扩展名
+// 例如 'gif,png,jpg,html,txt'
 $allowed_upload_extensions = '';
 
-// Favicon path. This can be either a full url to an .PNG image, or a path based on the document root.
-// full path, e.g http://example.com/favicon.png
-// local path, e.g images/icons/favicon.png
+// 网站图标路径。可以是完整的URL（.PNG 图像）或基于文档根目录的路径
+// 完整路径示例：http://example.com/favicon.png
+// 本地路径示例：images/icons/favicon.png
 $favicon_path = '';
 
-// Files and folders to excluded from listing
-// e.g. array('myfile.html', 'personal-folder', '*.php', '/path/to/folder', ...)
+// 从列表中排除的文件和文件夹
+// 例如 array('myfile.html', 'personal-folder', '*.php', '/path/to/folder', ...)
 $exclude_items = array();
 
-// Online office Docs Viewer
-// Available rules are 'google', 'microsoft' or false
-// Google => View documents using Google Docs Viewer
-// Microsoft => View documents using Microsoft Web Apps Viewer
-// false => disable online doc viewer
+// 在线文件预览查看器
+// 可选值：'google', 'microsoft' 或 false
+// Google => 使用 Google 文档查看器预览文档
+// Microsoft => 使用 Microsoft Web 应用查看器预览文档
+// false => 禁用在线文档查看器
 $online_viewer = 'google';
 
-// Sticky Nav bar
-// true => enable sticky header
-// false => disable sticky header
+// 粘性导航栏
+// true => 启用粘性页头
+// false => 禁用粘性页头
 $sticky_navbar = true;
 
-// Maximum file upload size
-// Increase the following values in php.ini to work properly
+// 最大文件上传限制
+// 需要在 php.ini 中增加以下参数以正常工作：
 // memory_limit, upload_max_filesize, post_max_size
-$max_upload_size_bytes = 5000000000; // size 5,000,000,000 bytes (~5GB)
+$max_upload_size_bytes = 5000000000; // 大小 5,000,000,000 字节（约5GB）
 
-// chunk size used for upload
-// eg. decrease to 1MB if nginx reports problem 413 entity too large
-$upload_chunk_size_bytes = 2000000; // chunk size 2,000,000 bytes (~2MB)
+// 上传时使用的分块大小
+// 例如：如果 nginx 报告 413 实体过大错误，可减少至 1MB
+$upload_chunk_size_bytes = 2000000; // 分块大小 2,000,000 字节（约2MB）
 
-// Possible rules are 'OFF', 'AND' or 'OR'
-// OFF => Don't check connection IP, defaults to OFF
-// AND => Connection must be on the whitelist, and not on the blacklist
-// OR => Connection must be on the whitelist, or not on the blacklist
+// 可能的规则值：'OFF', 'AND' 或 'OR'
+// OFF => 不检查连接 IP，默认值
+// AND => 连接必须在白名单中，且不在黑名单中
+// OR => 连接必须在白名单中，或不在黑名单中
 $ip_ruleset = 'OFF';
 
-// Should users be notified of their block?
+// 当用户被阻止时是否通知用户？
 $ip_silent = true;
 
-// IP-addresses, both ipv4 and ipv6
+// IP 地址白名单（支持 ipv4 和 ipv6）
 $ip_whitelist = array(
-    '127.0.0.1',    // local ipv4
-    '::1'           // local ipv6
+    '127.0.0.1',    // 本地 ipv4
+    '::1'           // 本地 ipv6
 );
 
-// IP-addresses, both ipv4 and ipv6
+// IP 地址黑名单（支持 ipv4 和 ipv6）
 $ip_blacklist = array(
-    '0.0.0.0',      // non-routable meta ipv4
-    '::'            // non-routable meta ipv6
+    '0.0.0.0',      // 非路由元 ipv4
+    '::'            // 非路由元 ipv6
 );
 
-// extension => language for advanced editor
+// 文件扩展名 => 高级编辑器语言映射
 $ext_language = array(
     'js' => 'javascript',
     'ts' => 'typescript',
@@ -163,14 +166,14 @@ $ext_language = array(
     'htaccess' => 'apache_conf',
 );
 
-// if User has the external config file, try to use it to override the default config above [config.php]
-// sample config - https://tinyfilemanager.github.io/config-sample.txt
+// 如果用户有外部配置文件，尝试使用它来覆盖上面的默认配置 [config.php]
+// 配置示例 - https://tinyfilemanager.github.io/config-sample.txt
 $config_file = __DIR__ . '/config.php';
 if (is_readable($config_file)) {
     @include($config_file);
 }
 
-// External CDN resources that can be used in the HTML (replace for GDPR compliance)
+// 可用于 HTML 中的外部 CDN 资源（可替换以符合 GDPR）
 $external = array(
     'css-bootstrap' => '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">',
     'css-dropzone' => '<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" rel="stylesheet">',
@@ -202,8 +205,8 @@ if (!defined('FM_SESSION_ID')) {
 // Configuration
 $cfg = new FM_Config();
 
-// Default language
-$lang = isset($cfg->data['lang']) ? $cfg->data['lang'] : 'en';
+// 默认语言
+$lang = isset($cfg->data['lang']) ? $cfg->data['lang'] : 'zh';
 
 // Show or hide files and folders that starts with a dot
 $show_hidden_files = isset($cfg->data['show_hidden']) ? $cfg->data['show_hidden'] : true;
@@ -219,9 +222,10 @@ $theme = isset($cfg->data['theme']) ? $cfg->data['theme'] : 'light';
 
 define('FM_THEME', $theme);
 
-//available languages
+// 可用语言列表
 $lang_list = array(
-    'en' => 'English'
+    'en' => 'English',
+    'zh' => '简体中文'
 );
 
 if ($report_errors == true) {
@@ -232,7 +236,7 @@ if ($report_errors == true) {
     @ini_set('display_errors', 0);
 }
 
-// if fm included
+// 如果 fm 被包含
 if (defined('FM_EMBED')) {
     $use_auth = false;
     $sticky_navbar = false;
@@ -249,11 +253,11 @@ if (defined('FM_EMBED')) {
         mb_regex_encoding('UTF-8');
     }
 
-    session_cache_limiter('nocache'); // Prevent logout issue after page was cached
+    session_cache_limiter('nocache'); // 防止页面缓存后的登出问题
     session_name(FM_SESSION_ID);
     function session_error_handling_function($code, $msg, $file, $line)
     {
-        // Permission denied for default session, try to create a new one
+        // 默认会话权限被拒绝，尝试创建一个新会话
         if ($code == 2) {
             session_abort();
             session_id(session_create_id());
@@ -265,7 +269,7 @@ if (defined('FM_EMBED')) {
     restore_error_handler();
 }
 
-//Generating CSRF Token
+// 生成 CSRF 令牌
 if (empty($_SESSION['token'])) {
     if (function_exists('random_bytes')) {
         $_SESSION['token'] = bin2hex(random_bytes(32));
@@ -281,42 +285,182 @@ if (empty($auth_users)) {
 $is_https = isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == 1)
     || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https';
 
-// update $root_url based on user specific directories
+// 根据用户特定目录更新 $root_url
 if (isset($_SESSION[FM_SESSION_ID]['logged']) && !empty($directories_users[$_SESSION[FM_SESSION_ID]['logged']])) {
     $wd = fm_clean_path(dirname($_SERVER['PHP_SELF']));
     $root_url =  $root_url . $wd . DIRECTORY_SEPARATOR . $directories_users[$_SESSION[FM_SESSION_ID]['logged']];
 }
-// clean $root_url
+// 清理 $root_url
 $root_url = fm_clean_path($root_url);
 
-// abs path for site
+// 网站的绝对路径
 defined('FM_ROOT_URL') || define('FM_ROOT_URL', ($is_https ? 'https' : 'http') . '://' . $http_host . (!empty($root_url) ? '/' . $root_url : ''));
 defined('FM_SELF_URL') || define('FM_SELF_URL', ($is_https ? 'https' : 'http') . '://' . $http_host . $_SERVER['PHP_SELF']);
 
-// logout
+// 退出登录
 if (isset($_GET['logout'])) {
     unset($_SESSION[FM_SESSION_ID]['logged']);
+    unset($_SESSION[FM_SESSION_ID]['shopagg_access_ip']);
+    unset($_SESSION[FM_SESSION_ID]['shopagg_access_expires']);
     unset($_SESSION['token']);
     fm_redirect(FM_SELF_URL);
 }
 
-// Validate connection IP
-if ($ip_ruleset != 'OFF') {
-    function getClientIP()
-    {
-        if (array_key_exists('HTTP_CF_CONNECTING_IP', $_SERVER)) {
-            return  $_SERVER["HTTP_CF_CONNECTING_IP"];
-        } else if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
-            return  $_SERVER["HTTP_X_FORWARDED_FOR"];
-        } else if (array_key_exists('REMOTE_ADDR', $_SERVER)) {
-            return $_SERVER['REMOTE_ADDR'];
-        } else if (array_key_exists('HTTP_CLIENT_IP', $_SERVER)) {
-            return $_SERVER['HTTP_CLIENT_IP'];
+function fm_get_client_ip()
+{
+    $candidates = array(
+        $_SERVER['HTTP_CF_CONNECTING_IP'] ?? '',
+        $_SERVER['HTTP_X_FORWARDED_FOR'] ?? '',
+        $_SERVER['REMOTE_ADDR'] ?? '',
+        $_SERVER['HTTP_CLIENT_IP'] ?? '',
+    );
+
+    foreach ($candidates as $index => $candidate) {
+        if (!is_string($candidate)) {
+            continue;
         }
-        return '';
+
+        $candidate = trim($candidate);
+        if ($candidate === '') {
+            continue;
+        }
+
+        if ($index === 1) {
+            $candidate = trim(explode(',', $candidate)[0] ?? '');
+        }
+
+        if ($candidate !== '' && filter_var($candidate, FILTER_VALIDATE_IP)) {
+            return $candidate;
+        }
     }
 
-    $clientIp = getClientIP();
+    return '';
+}
+
+function fm_shopagg_signature_payload($entryFilename, $expires, $clientIp)
+{
+    return basename((string) $entryFilename) . '|' . (string) $expires . '|' . (string) $clientIp;
+}
+
+function fm_forget_shopagg_access_session()
+{
+    unset($_SESSION[FM_SESSION_ID]['logged']);
+    unset($_SESSION[FM_SESSION_ID]['shopagg_access_ip']);
+    unset($_SESSION[FM_SESSION_ID]['shopagg_access_expires']);
+}
+
+function fm_has_valid_shopagg_access_session($authUsers)
+{
+    if (!isset($_SESSION[FM_SESSION_ID]['logged']) || $_SESSION[FM_SESSION_ID]['logged'] !== '__shopagg_access__') {
+        fm_forget_shopagg_access_session();
+        return false;
+    }
+
+    if (!isset($authUsers['__shopagg_access__'])) {
+        fm_forget_shopagg_access_session();
+        return false;
+    }
+
+    $expires = (int) ($_SESSION[FM_SESSION_ID]['shopagg_access_expires'] ?? 0);
+    $boundIp = (string) ($_SESSION[FM_SESSION_ID]['shopagg_access_ip'] ?? '');
+    $currentIp = fm_get_client_ip();
+
+    if ($expires <= 0 || $boundIp === '' || $currentIp === '' || time() > $expires || !hash_equals($boundIp, $currentIp)) {
+        fm_forget_shopagg_access_session();
+        return false;
+    }
+
+    return true;
+}
+
+function fm_try_shopagg_authorize_request($authUsers, $shopaggAccessSecret, $shopaggAccessLinkTtlSeconds)
+{
+    if (!isset($authUsers['__shopagg_access__'])) {
+        return false;
+    }
+
+    $expires = isset($_GET['shopagg_expires']) ? (int) $_GET['shopagg_expires'] : 0;
+    $signedIp = isset($_GET['shopagg_ip']) ? trim((string) $_GET['shopagg_ip']) : '';
+    $signature = isset($_GET['shopagg_sig']) ? trim((string) $_GET['shopagg_sig']) : '';
+    $currentIp = fm_get_client_ip();
+    $ttl = max(0, (int) $shopaggAccessLinkTtlSeconds);
+
+    if ($shopaggAccessSecret === '' || $expires <= time() || $signedIp === '' || $signature === '' || $currentIp === '') {
+        return false;
+    }
+
+    if (!hash_equals($signedIp, $currentIp)) {
+        return false;
+    }
+
+    if ($ttl > 0 && ($expires - time()) > $ttl) {
+        return false;
+    }
+
+    $expected = hash_hmac(
+        'sha256',
+        fm_shopagg_signature_payload(basename($_SERVER['PHP_SELF'] ?? ''), $expires, $signedIp),
+        $shopaggAccessSecret
+    );
+
+    if (!hash_equals($expected, $signature)) {
+        return false;
+    }
+
+    $_SESSION[FM_SESSION_ID]['logged'] = '__shopagg_access__';
+    $_SESSION[FM_SESSION_ID]['shopagg_access_ip'] = $currentIp;
+    $_SESSION[FM_SESSION_ID]['shopagg_access_expires'] = $expires;
+
+    return true;
+}
+
+function fm_show_shopagg_access_required_page($message)
+{
+    fm_show_header_login();
+?>
+    <section class="h-100">
+        <div class="container h-100">
+            <div class="row justify-content-md-center align-content-center h-100vh">
+                <div class="card-wrapper">
+                    <div class="card fat" data-bs-theme="<?php echo FM_THEME; ?>">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="brand">
+                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" M1008 width="100%" height="80px" viewBox="0 0 238.000000 140.000000" aria-label="H3K Tiny File Manager">
+                                        <g transform="translate(0.000000,140.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                                            <path d="M160 700 l0 -600 110 0 110 0 0 260 0 260 70 0 70 0 0 -260 0 -260 110 0 110 0 0 600 0 600 -110 0 -110 0 0 -260 0 -260 -70 0 -70 0 0 260 0 260 -110 0 -110 0 0 -600z" />
+                                            <path fill="#003500" d="M1008 1227 l-108 -72 0 -117 0 -118 110 0 110 0 0 110 0 110 70 0 70 0 0 -180 0 -180 -125 0 c-69 0 -125 -3 -125 -6 0 -3 23 -39 52 -80 l52 -74 73 0 73 0 0 -185 0 -185 -70 0 -70 0 0 115 0 115 -110 0 -110 0 0 -190 0 -190 181 0 181 0 109 73 108 72 1 181 0 181 -69 48 -68 49 68 50 69 49 0 249 0 248 -182 -1 -183 0 -107 -72z" />
+                                            <path d="M1640 700 l0 -600 110 0 110 0 0 208 0 208 35 34 35 34 35 -34 35 -34 0 -208 0 -208 110 0 110 0 0 212 0 213 -87 87 -88 88 88 88 87 87 0 213 0 212 -110 0 -110 0 0 -208 0 -208 -70 -69 -70 -69 0 277 0 277 -110 0 -110 0 0 -600z" />
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="text-center">
+                                    <h1 class="card-title"><?php echo APP_TITLE; ?></h1>
+                                    <p class="mt-3 text-muted"><?php echo htmlentities((string) $message, ENT_QUOTES, 'UTF-8'); ?></p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="alert alert-warning mb-0" role="alert">
+                                请返回 Shopagg 控制台生成 2 小时授权链接后再访问。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer text-center">
+                        &mdash;&mdash; &copy;
+                        <a href="https://tinyfilemanager.github.io/" target="_blank" class="text-decoration-none text-muted" data-version="<?php echo VERSION; ?>">CCP Programmers</a> &mdash;&mdash;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php
+    fm_show_footer_login();
+    exit;
+}
+
+// 验证连接 IP
+if ($ip_ruleset != 'OFF') {
+    $clientIp = fm_get_client_ip();
     $proceed = false;
     $whitelisted = in_array($clientIp, $ip_whitelist);
     $blacklisted = in_array($clientIp, $ip_blacklist);
@@ -346,85 +490,23 @@ if ($ip_ruleset != 'OFF') {
 
 // Checking if the user is logged in or not. If not, it will show the login form.
 if ($use_auth) {
-    if (isset($_SESSION[FM_SESSION_ID]['logged'], $auth_users[$_SESSION[FM_SESSION_ID]['logged']])) {
+    if (fm_has_valid_shopagg_access_session($auth_users)) {
         // Logged
-    } elseif (isset($_POST['fm_usr'], $_POST['fm_pwd'], $_POST['token'])) {
-        // Logging In
-        sleep(1);
-        if (function_exists('password_verify')) {
-            if (isset($auth_users[$_POST['fm_usr']]) && isset($_POST['fm_pwd']) && password_verify($_POST['fm_pwd'], $auth_users[$_POST['fm_usr']]) && verifyToken($_POST['token'])) {
-                $_SESSION[FM_SESSION_ID]['logged'] = $_POST['fm_usr'];
-                fm_set_msg(lng('You are logged in'));
-                fm_redirect(FM_SELF_URL);
-            } else {
-                unset($_SESSION[FM_SESSION_ID]['logged']);
-                fm_set_msg(lng('Login failed. Invalid username or password'), 'error');
-                fm_redirect(FM_SELF_URL);
-            }
-        } else {
-            fm_set_msg(lng('password_hash not supported, Upgrade PHP version'), 'error');;
-        }
+    } elseif (fm_try_shopagg_authorize_request($auth_users, $shopagg_access_secret, $shopagg_access_link_ttl_seconds)) {
+        $targetPath = isset($_GET['p']) ? fm_clean_path((string) $_GET['p']) : '';
+        fm_redirect(FM_SELF_URL . '?p=' . urlencode($targetPath));
     } else {
-        // Form
-        unset($_SESSION[FM_SESSION_ID]['logged']);
-        fm_show_header_login();
-?>
-        <section class="h-100">
-            <div class="container h-100">
-                <div class="row justify-content-md-center align-content-center h-100vh">
-                    <div class="card-wrapper">
-                        <div class="card fat" data-bs-theme="<?php echo FM_THEME; ?>">
-                            <div class="card-body">
-                                <form class="form-signin" action="" method="post" autocomplete="off">
-                                    <div class="mb-3">
-                                        <div class="brand">
-                                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" M1008 width="100%" height="80px" viewBox="0 0 238.000000 140.000000" aria-label="H3K Tiny File Manager">
-                                                <g transform="translate(0.000000,140.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
-                                                    <path d="M160 700 l0 -600 110 0 110 0 0 260 0 260 70 0 70 0 0 -260 0 -260 110 0 110 0 0 600 0 600 -110 0 -110 0 0 -260 0 -260 -70 0 -70 0 0 260 0 260 -110 0 -110 0 0 -600z" />
-                                                    <path fill="#003500" d="M1008 1227 l-108 -72 0 -117 0 -118 110 0 110 0 0 110 0 110 70 0 70 0 0 -180 0 -180 -125 0 c-69 0 -125 -3 -125 -6 0 -3 23 -39 52 -80 l52 -74 73 0 73 0 0 -185 0 -185 -70 0 -70 0 0 115 0 115 -110 0 -110 0 0 -190 0 -190 181 0 181 0 109 73 108 72 1 181 0 181 -69 48 -68 49 68 50 69 49 0 249 0 248 -182 -1 -183 0 -107 -72z" />
-                                                    <path d="M1640 700 l0 -600 110 0 110 0 0 208 0 208 35 34 35 34 35 -34 35 -34 0 -208 0 -208 110 0 110 0 0 212 0 213 -87 87 -88 88 88 88 87 87 0 213 0 212 -110 0 -110 0 0 -208 0 -208 -70 -69 -70 -69 0 277 0 277 -110 0 -110 0 0 -600z" />
-                                                </g>
-                                            </svg>
-                                        </div>
-                                        <div class="text-center">
-                                            <h1 class="card-title"><?php echo APP_TITLE; ?></h1>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div class="mb-3">
-                                        <label for="fm_usr" class="pb-2"><?php echo lng('Username'); ?></label>
-                                        <input type="text" class="form-control" id="fm_usr" name="fm_usr" required autofocus>
-                                    </div>
+        fm_forget_shopagg_access_session();
 
-                                    <div class="mb-3">
-                                        <label for="fm_pwd" class="pb-2"><?php echo lng('Password'); ?></label>
-                                        <input type="password" class="form-control" id="fm_pwd" name="fm_pwd" required>
-                                    </div>
+        if (isset($_POST['fm_usr'], $_POST['fm_pwd'])) {
+            fm_show_shopagg_access_required_page('文件管理器已禁用手工登录，请返回 Shopagg 控制台重新生成授权链接。');
+        }
 
-                                    <div class="mb-3">
-                                        <?php fm_show_message(); ?>
-                                    </div>
-                                    <input type="hidden" name="token" value="<?php echo htmlentities($_SESSION['token']); ?>" />
-                                    <div class="mb-3">
-                                        <button type="submit" class="btn btn-success btn-block w-100 mt-4" role="button">
-                                            <?php echo lng('Login'); ?>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="footer text-center">
-                            &mdash;&mdash; &copy;
-                            <a href="https://tinyfilemanager.github.io/" target="_blank" class="text-decoration-none text-muted" data-version="<?php echo VERSION; ?>">CCP Programmers</a> &mdash;&mdash;
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        if (isset($_GET['shopagg_expires']) || isset($_GET['shopagg_ip']) || isset($_GET['shopagg_sig'])) {
+            fm_show_shopagg_access_required_page('授权链接无效、已过期，或当前访问 IP 已变化，请返回 Shopagg 控制台重新生成。');
+        }
 
-    <?php
-        fm_show_footer_login();
-        exit;
+        fm_show_shopagg_access_required_page('请从 Shopagg 控制台生成 2 小时授权链接访问文件管理器。');
     }
 }
 
@@ -477,16 +559,16 @@ defined('FM_DATETIME_FORMAT') || define('FM_DATETIME_FORMAT', $datetime_format);
 
 unset($p, $use_auth, $iconv_input_encoding, $use_highlightjs, $highlightjs_style);
 
-/*************************** ACTIONS ***************************/
+/*************************** 划分线 划分线 ***************************/
 
-// Handle all AJAX Request
+// 处理所有 AJAX 请求
 if ((isset($_SESSION[FM_SESSION_ID]['logged'], $auth_users[$_SESSION[FM_SESSION_ID]['logged']]) || !FM_USE_AUTH) && isset($_POST['ajax'], $_POST['token'])) {
     if (!verifyToken($_POST['token'])) {
         header('HTTP/1.0 401 Unauthorized');
         die("Invalid Token.");
     }
 
-    //search : get list of files from the current folder
+    // 搜索 : 从当前文件夹获取文件列表
     if (isset($_POST['type']) && $_POST['type'] == "search") {
         $dir = $_POST['path'] == "." ? '' : $_POST['path'];
         $response = scan(fm_clean_path($dir), $_POST['content']);
@@ -498,9 +580,9 @@ if ((isset($_SESSION[FM_SESSION_ID]['logged'], $auth_users[$_SESSION[FM_SESSION_
         exit();
     }
 
-    // save editor file
+    // 保存编辑器文件
     if (isset($_POST['type']) && $_POST['type'] == "save") {
-        // get current path
+        // 获取当前路径
         $path = FM_ROOT_PATH;
         if (FM_PATH != '') {
             $path .= '/' . FM_PATH;
@@ -695,7 +777,7 @@ if ((isset($_SESSION[FM_SESSION_ID]['logged'], $auth_users[$_SESSION[FM_SESSION_
     exit();
 }
 
-// Delete file / folder
+// 删除文件/文件夹
 if (isset($_GET['del'], $_POST['token']) && !FM_READONLY) {
     $del = str_replace('/', '', fm_clean_path($_GET['del']));
     if ($del != '' && $del != '..' && $del != '.' && verifyToken($_POST['token'])) {
@@ -718,7 +800,7 @@ if (isset($_GET['del'], $_POST['token']) && !FM_READONLY) {
     fm_redirect(FM_SELF_URL . '?p=' . urlencode($FM_PATH));
 }
 
-// Create a new file/folder
+// 创建新文件/文件夹
 if (isset($_POST['newfilename'], $_POST['newfile'], $_POST['token']) && !FM_READONLY) {
     $type = urldecode($_POST['newfile']);
     $new = str_replace('/', '', fm_clean_path(strip_tags($_POST['newfilename'])));
@@ -754,7 +836,7 @@ if (isset($_POST['newfilename'], $_POST['newfile'], $_POST['token']) && !FM_READ
     fm_redirect(FM_SELF_URL . '?p=' . urlencode($FM_PATH));
 }
 
-// Copy folder / file
+// 复制文件夹/文件
 if (isset($_GET['copy'], $_GET['finish']) && !FM_READONLY) {
     // from
     $copy = urldecode($_GET['copy']);
@@ -826,7 +908,7 @@ if (isset($_GET['copy'], $_GET['finish']) && !FM_READONLY) {
     fm_redirect(FM_SELF_URL . '?p=' . urlencode($FM_PATH));
 }
 
-// Mass copy files/ folders
+// 批量复制文件/文件夹
 if (isset($_POST['file'], $_POST['copy_to'], $_POST['finish'], $_POST['token']) && !FM_READONLY) {
 
     if (!verifyToken($_POST['token'])) {
@@ -897,7 +979,7 @@ if (isset($_POST['file'], $_POST['copy_to'], $_POST['finish'], $_POST['token']) 
     fm_redirect(FM_SELF_URL . '?p=' . urlencode($FM_PATH));
 }
 
-// Rename
+// 重新命名
 if (isset($_POST['rename_from'], $_POST['rename_to'], $_POST['token']) && !FM_READONLY) {
     if (!verifyToken($_POST['token'])) {
         fm_set_msg(lng("Invalid Token."), 'error');
@@ -930,7 +1012,7 @@ if (isset($_POST['rename_from'], $_POST['rename_to'], $_POST['token']) && !FM_RE
     fm_redirect(FM_SELF_URL . '?p=' . urlencode($FM_PATH));
 }
 
-// Download
+// 下载
 if (isset($_GET['dl'], $_POST['token'])) {
     // Verify the token to ensure it's valid
     if (!verifyToken($_POST['token'])) {
@@ -967,7 +1049,7 @@ if (isset($_GET['dl'], $_POST['token'])) {
     }
 }
 
-// Upload
+// 上传
 if (!empty($_FILES) && !FM_READONLY) {
     if (isset($_POST['token'])) {
         if (!verifyToken($_POST['token'])) {
@@ -1111,7 +1193,7 @@ if (!empty($_FILES) && !FM_READONLY) {
     exit();
 }
 
-// Mass deleting
+// 批量删除
 if (isset($_POST['group'], $_POST['delete'], $_POST['token']) && !FM_READONLY) {
 
     if (!verifyToken($_POST['token'])) {
@@ -1148,7 +1230,7 @@ if (isset($_POST['group'], $_POST['delete'], $_POST['token']) && !FM_READONLY) {
     fm_redirect(FM_SELF_URL . '?p=' . urlencode($FM_PATH));
 }
 
-// Pack files zip, tar
+// 压缩文件 zip, tar
 if (isset($_POST['group'], $_POST['token']) && (isset($_POST['zip']) || isset($_POST['tar'])) && !FM_READONLY) {
 
     if (!verifyToken($_POST['token'])) {
@@ -1213,7 +1295,7 @@ if (isset($_POST['group'], $_POST['token']) && (isset($_POST['zip']) || isset($_
     fm_redirect(FM_SELF_URL . '?p=' . urlencode($FM_PATH));
 }
 
-// Unpack zip, tar
+// 解压 zip, tar
 if (isset($_POST['unzip'], $_POST['token']) && !FM_READONLY) {
 
     if (!verifyToken($_POST['token'])) {
@@ -1284,7 +1366,7 @@ if (isset($_POST['unzip'], $_POST['token']) && !FM_READONLY) {
     fm_redirect(FM_SELF_URL . '?p=' . urlencode($FM_PATH));
 }
 
-// Change Perms (not for Windows)
+// 修改权限（仅限非Windows）
 if (isset($_POST['chmod'], $_POST['token']) && !FM_READONLY && !FM_IS_WIN) {
 
     if (!verifyToken($_POST['token'])) {
@@ -2376,11 +2458,11 @@ fm_show_footer();
 
 // --- END HTML ---
 
-// Functions
+// --- 主要函数 ---
 
 /**
- * It prints the css/js files into html
- * @param key The key of the external file to print.
+ * 打印 CSS/JS 文件到 HTML
+ * @param key 要打印的外部文件的键
  */
 function print_external($key)
 {
@@ -2396,7 +2478,7 @@ function print_external($key)
 }
 
 /**
- * Verify CSRF TOKEN and remove after certified
+ * 验证 CSRF TOKEN 并在验证后删除
  * @param string $token
  * @return bool
  */
@@ -2409,7 +2491,7 @@ function verifyToken($token)
 }
 
 /**
- * Delete  file or folder (recursively)
+ * 递归删除文件或文件夹
  * @param string $path
  * @return bool
  */
@@ -2437,12 +2519,12 @@ function fm_rdelete($path)
 }
 
 /**
- * Recursive chmod
+ * 递归修改权限
  * @param string $path
  * @param int $filemode
  * @param int $dirmode
  * @return bool
- * @todo Will use in mass chmod
+ * @todo 会在批量修改权限中使用
  */
 function fm_rchmod($path, $filemode, $dirmode)
 {
@@ -2470,7 +2552,7 @@ function fm_rchmod($path, $filemode, $dirmode)
 }
 
 /**
- * Check the file extension which is allowed or not
+ * 检查文件扩展名是否允许
  * @param string $filename
  * @return bool
  */
@@ -2485,7 +2567,7 @@ function fm_is_valid_ext($filename)
 }
 
 /**
- * Safely rename
+ * 安全重新命名
  * @param string $old
  * @param string $new
  * @return bool|null
@@ -2502,11 +2584,11 @@ function fm_rename($old, $new)
 }
 
 /**
- * Copy file or folder (recursively).
+ * 复制文件或文件夹（递归）
  * @param string $path
  * @param string $dest
- * @param bool $upd Update files
- * @param bool $force Create folder with same names instead file
+ * @param bool $upd 更新文件
+ * @param bool $force 不是文件时创建名称相同的文件夹
  * @return bool
  */
 function fm_rcopy($path, $dest, $upd = true, $force = true)
@@ -2602,7 +2684,7 @@ function fm_get_mime_type($file_path)
 }
 
 /**
- * HTTP Redirect
+ * HTTP 重定向
  * @param string $url
  * @param int $code
  */
@@ -2635,7 +2717,7 @@ function get_absolute_path($path)
 }
 
 /**
- * Clean path
+ * 清洁路径
  * @param string $path
  * @return string
  */
@@ -2652,7 +2734,7 @@ function fm_clean_path($path, $trim = true)
 }
 
 /**
- * Get parent path
+ * 获取父路径
  * @param string $path
  * @return bool|string
  */
@@ -2695,9 +2777,9 @@ function fm_get_display_path($file_path)
 }
 
 /**
- * Check file is in exclude list
- * @param string $name The name of the file/folder
- * @param string $path The full path of the file/folder
+ * 检查文件是否在排除编辑列表中
+ * @param string $name 文件/文件夹的名称
+ * @param string $path 文件/文件夹的完整路径
  * @return bool
  */
 function fm_is_exclude_items($name, $path)
@@ -2718,7 +2800,7 @@ function fm_is_exclude_items($name, $path)
 }
 
 /**
- * get language translations from json file
+ * 从 json 文件获取语言翻译
  * @param int $tr
  * @return array
  */
@@ -2791,7 +2873,7 @@ function fm_get_size($file)
 
 
 /**
- * Get nice filesize
+ * 获取清晰文件大小
  * @param int $size
  * @return string
  */
@@ -2805,7 +2887,7 @@ function fm_get_filesize($size)
 }
 
 /**
- * Get info about zip archive
+ * 获取窎档䯹报配方案信息
  * @param string $path
  * @return array|bool
  */
@@ -2851,7 +2933,7 @@ function fm_get_zip_info($path, $ext)
 }
 
 /**
- * Encode html entities
+ * 漂白 HTML 实体
  * @param string $text
  * @return string
  */
@@ -2861,7 +2943,7 @@ function fm_enc($text)
 }
 
 /**
- * Prevent XSS attacks
+ * 防止 XSS 攻击
  * @param string $text
  * @return string
  */
@@ -2871,7 +2953,7 @@ function fm_isvalid_filename($text)
 }
 
 /**
- * Save message in session
+ * 在 Session 中保存消息
  * @param string $msg
  * @param string $status
  */
@@ -2882,7 +2964,7 @@ function fm_set_msg($msg, $status = 'ok')
 }
 
 /**
- * Check if string is in UTF-8
+ * 检查字符串是否是 UTF-8
  * @param string $string
  * @return int
  */
@@ -2892,7 +2974,7 @@ function fm_is_utf8($string)
 }
 
 /**
- * Convert file name to UTF-8 in Windows
+ * 在 Windows 中将文件名转换为 UTF-8
  * @param string $filename
  * @return string
  */
@@ -2920,7 +3002,7 @@ function fm_object_to_array($obj)
 }
 
 /**
- * Get CSS classname for file
+ * 获取文件 CSS 第一个名称
  * @param string $path
  * @return string
  */
@@ -3128,7 +3210,7 @@ function fm_get_file_icon_class($path)
 }
 
 /**
- * Get image files extensions
+ * 获取图像文件扩展名
  * @return array
  */
 function fm_get_image_exts()
@@ -3137,7 +3219,7 @@ function fm_get_image_exts()
 }
 
 /**
- * Get video files extensions
+ * 获取视频文件扩展名
  * @return array
  */
 function fm_get_video_exts()
@@ -3146,7 +3228,7 @@ function fm_get_video_exts()
 }
 
 /**
- * Get audio files extensions
+ * 获取音频文件扩展名
  * @return array
  */
 function fm_get_audio_exts()
@@ -3155,7 +3237,7 @@ function fm_get_audio_exts()
 }
 
 /**
- * Get text file extensions
+ * 获取文本文件扩展名
  * @return array
  */
 function fm_get_text_exts()
@@ -3263,7 +3345,7 @@ function fm_get_text_exts()
 }
 
 /**
- * Get mime types of text files
+ * 获取文本文件的 MIME 类型
  * @return array
  */
 function fm_get_text_mimes()
@@ -3279,7 +3361,7 @@ function fm_get_text_mimes()
 }
 
 /**
- * Get file names of text files w/o extensions
+ * 获取没有扩展名的文本文件的文件名
  * @return array
  */
 function fm_get_text_names()
@@ -3294,7 +3376,7 @@ function fm_get_text_names()
 }
 
 /**
- * Get online docs viewer supported files extensions
+ * 获取在线文档查看器支持的文件扩展名
  * @return array
  */
 function fm_get_onlineViewer_exts()
@@ -3303,9 +3385,9 @@ function fm_get_onlineViewer_exts()
 }
 
 /**
- * It returns the mime type of a file based on its extension.
- * @param extension The file extension of the file you want to get the mime type for.
- * @return string|string[] The mime type of the file.
+ * 它根据扩展名返回文件的 MIME 类型
+ * @param extension 要获取 MIME 类型的文件扩展名
+ * @return string|string[] 文件的 MIME 类型
  */
 function fm_get_file_mimes($extension)
 {
@@ -3357,7 +3439,7 @@ function fm_get_file_mimes($extension)
 }
 
 /**
- * This function scans the files and folder recursively, and return matching files
+ * 此函数递归扫描文件和文件夹，并返回匹配的文件
  * @param string $dir
  * @param string $filter
  * @return array|null
@@ -3386,10 +3468,10 @@ function scan($dir = '', $filter = '')
 }
 
 /**
- * Parameters: downloadFile(File Location, File Name,
- * max speed, is streaming
- * If streaming - videos will show as videos, images as images
- * instead of download prompt
+ * 参数： downloadFile(文件位置, 文件名,
+ * 最大速度, 是否是流式
+ * 如果流式 - 视频会显示为视频，图像为图像
+ * 而不是下载提示
  * https://stackoverflow.com/a/13821992/1164642
  */
 function fm_download_file($fileLocation, $fileName, $chunkSize  = 1024)
@@ -3467,7 +3549,7 @@ function fm_download_file($fileLocation, $fileName, $chunkSize  = 1024)
 }
 
 /**
- * Class to work with zip files (using ZipArchive)
+ * 用于处理 zip 文件的类（使用 ZipArchive）
  */
 class FM_Zipper
 {
@@ -3479,7 +3561,7 @@ class FM_Zipper
     }
 
     /**
-     * Create archive with name $filename and files $files (RELATIVE PATHS!)
+     * 创建名称为 $filename 的当月 的文件 $files（相对路径）
      * @param string $filename
      * @param array|string $files
      * @return bool
@@ -3510,7 +3592,7 @@ class FM_Zipper
     }
 
     /**
-     * Extract archive $filename to folder $path (RELATIVE OR ABSOLUTE PATHS)
+     * 提取当月 $filename 到文件夹 $path（相对或绝对路径）
      * @param string $filename
      * @param string $path
      * @return bool
@@ -3529,7 +3611,7 @@ class FM_Zipper
     }
 
     /**
-     * Add file/folder to archive
+     * 添加文件/文件夹到当月
      * @param string $filename
      * @return bool
      */
@@ -3575,7 +3657,7 @@ class FM_Zipper
 }
 
 /**
- * Class to work with Tar files (using PharData)
+ * 一个不名的 tar 文件处理类（使用 PharData）
  */
 class FM_Zipper_Tar
 {
@@ -3587,7 +3669,7 @@ class FM_Zipper_Tar
     }
 
     /**
-     * Create archive with name $filename and files $files (RELATIVE PATHS!)
+     * 创建名称为 $filename 的失一減 的文件 $files（相对路径）
      * @param string $filename
      * @param array|string $files
      * @return bool
@@ -3612,7 +3694,7 @@ class FM_Zipper_Tar
     }
 
     /**
-     * Extract archive $filename to folder $path (RELATIVE OR ABSOLUTE PATHS)
+     * 提取当月 $filename 到文件夹 $path（相对或绝对路径）
      * @param string $filename
      * @param string $path
      * @return bool
@@ -3630,7 +3712,7 @@ class FM_Zipper_Tar
     }
 
     /**
-     * Add file/folder to archive
+     * 添加文件/文件夹到当月
      * @param string $filename
      * @return bool
      */
@@ -3650,7 +3732,7 @@ class FM_Zipper_Tar
     }
 
     /**
-     * Add folder recursively
+     * 递归添加文件夹
      * @param string $path
      * @return bool
      */
@@ -3680,7 +3762,7 @@ class FM_Zipper_Tar
 }
 
 /**
- * Save Configuration
+ * 保存配置
  */
 class FM_Config
 {
@@ -3691,7 +3773,7 @@ class FM_Config
         global $root_path, $root_url, $CONFIG;
         $fm_url = $root_url . $_SERVER["PHP_SELF"];
         $this->data = array(
-            'lang' => 'en',
+            'lang' => 'zh',
             'error_reporting' => true,
             'show_hidden' => true
         );
@@ -3732,10 +3814,10 @@ class FM_Config
     }
 }
 
-//--- Templates Functions ---
+//--- 模板函数 ---
 
 /**
- * Show nav block
+ * 显示导航块
  * @param string $path
  */
 function fm_show_nav_path($path)
@@ -3822,7 +3904,7 @@ function fm_show_nav_path($path)
 }
 
 /**
- * Show alert message from session
+ * 从 Session 显示警告消息
  */
 function fm_show_message()
 {
@@ -3835,7 +3917,7 @@ function fm_show_message()
 }
 
 /**
- * Show page header in Login Form
+ * 在登录表单中显示页面标题
  */
 function fm_show_header_login()
 {
@@ -3847,7 +3929,7 @@ function fm_show_header_login()
     global $favicon_path;
 ?>
     <!DOCTYPE html>
-    <html lang="en" data-bs-theme="<?php echo (FM_THEME == "dark") ? 'dark' : 'light' ?>">
+    <html lang="zh-CN" data-bs-theme="<?php echo (FM_THEME == "dark") ? 'dark' : 'light' ?>">
 
     <head>
         <meta charset="utf-8">
@@ -3981,7 +4063,7 @@ function fm_show_header_login()
     }
 
     /**
-     * Show page footer in Login Form
+     * 在登录表单中显示页面页脚
      */
     function fm_show_footer_login()
     {
@@ -3997,7 +4079,7 @@ function fm_show_header_login()
     }
 
     /**
-     * Show Header after login
+     * 登录后显示页面标题
      */
     function fm_show_header()
     {
@@ -4835,7 +4917,7 @@ function fm_show_header_login()
     }
 
     /**
-     * Show page footer after login
+     * 登录后显示页面页脚
      */
     function fm_show_footer()
     {
@@ -4906,7 +4988,7 @@ function fm_show_header_login()
                 e.push(this), change_checkboxes(e)
             }
 
-            // Create file backup with .bck
+            // 使用 .bck 创建文件备份
             function backup(e, t) {
                 var n = new XMLHttpRequest,
                     a = "path=" + e + "&file=" + t + "&token=" + window.csrf + "&type=backup&ajax=true";
@@ -4915,7 +4997,7 @@ function fm_show_header_login()
                 }, n.send(a), !1
             }
 
-            // Toast message
+            // 提示消息
             function toast(txt) {
                 var x = document.getElementById("snackbar");
                 x.innerHTML = txt;
@@ -4925,7 +5007,7 @@ function fm_show_header_login()
                 }, 3000);
             }
 
-            // Save file
+            // 保存文件
             function edit_save(e, t) {
                 var n = "ace" == t ? editor.getSession().getValue() : document.getElementById("normal-editor").value;
                 if (typeof n !== 'undefined' && n !== null) {
@@ -4974,7 +5056,7 @@ function fm_show_header_login()
                 $(".js-new-pwd").toggleClass('hidden');
             }
 
-            // Save Settings
+            // 保存设置
             function save_settings($this) {
                 let form = $($this);
                 $.ajax({
@@ -4990,7 +5072,7 @@ function fm_show_header_login()
                 return false;
             }
 
-            //Create new password hash
+            //创建新的密码哈希
             function new_password_hash($this) {
                 let form = $($this),
                     $pwd = $("#js-pwd-result");
@@ -5008,7 +5090,7 @@ function fm_show_header_login()
                 return false;
             }
 
-            // Upload files using URL @param {Object}
+            // 使用 URL 上传文件 @param {Object}
             function upload_from_url($this) {
                 let form = $($this),
                     resultWrapper = $("div#js-url-upload__list");
@@ -5045,7 +5127,7 @@ function fm_show_header_login()
                 return false;
             }
 
-            // Search template
+            // 搜索模板
             function search_template(data) {
                 var response = "";
                 $.each(data, function(key, val) {
@@ -5054,7 +5136,7 @@ function fm_show_header_login()
                 return response;
             }
 
-            // Advance search
+            // 高级搜索
             function fm_search() {
                 var searchTxt = $("input#advanced-search").val(),
                     searchWrapper = $("ul#search-wrapper"),
@@ -5101,7 +5183,7 @@ function fm_show_header_login()
                 }
             }
 
-            // action confirm dialog modal
+            // 动作确认对话框
             function confirmDialog(e, id = 0, title = "Action", content = "", action = null) {
                 e.preventDefault();
                 const tplObj = {
@@ -5118,7 +5200,7 @@ function fm_show_header_login()
                 return false;
             }
 
-            // on mouse hover image preview
+            // 在鼠标悬停上的图像预览
             ! function(s) {
                 s.previewImage = function(e) {
                     var o = s(document),
@@ -5148,9 +5230,9 @@ function fm_show_header_login()
                 }, s.previewImage()
             }(jQuery);
 
-            // Dom Ready Events
+            // Dom 应笽厶
             $(document).ready(function() {
-                // dataTable init
+                // dataTable 初始化
                 var $table = $('#main-table'),
                     tableLng = $table.find('th').length,
                     _targets = (tableLng && tableLng == 7) ? [0, 4, 5, 6] : tableLng == 5 ? [0, 4] : [3];
@@ -5164,7 +5246,7 @@ function fm_show_header_login()
                     }]
                 });
 
-                // filter table
+                // 筛选表格
                 $('#search-addon').on('keyup', function() {
                     mainTable.search(this.value).draw();
                 });
@@ -5179,7 +5261,7 @@ function fm_show_header_login()
                     fm_search();
                 });
 
-                //upload nav tabs
+                //上传导航标签
                 $(".fm-upload-wrapper .card-header-tabs").on("click", 'a', function(e) {
                     e.preventDefault();
                     let target = $(this).data('target');
@@ -5202,8 +5284,8 @@ function fm_show_header_login()
                     path: "ace/mode/<?php echo $ext; ?>",
                     inline: true
                 });
-                //editor.setTheme("ace/theme/twilight"); // Dark Theme
-                editor.setShowPrintMargin(false); // Hide the vertical ruler
+                //editor.setTheme("ace/theme/twilight"); // 暗主题
+                editor.setShowPrintMargin(false); // 隐藏竞目尺
                 function ace_commend(cmd) {
                     editor.commands.exec(cmd, editor);
                 }
