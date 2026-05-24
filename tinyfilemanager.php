@@ -344,9 +344,9 @@ function fm_get_client_ip()
     return '';
 }
 
-function fm_shopagg_signature_payload($entryFilename, $expires)
+function fm_shopagg_signature_payload($expires)
 {
-    return basename((string) $entryFilename) . '|' . (string) $expires;
+    return 'shopagg-file-manager|' . (string) $expires;
 }
 
 function fm_forget_shopagg_access_session()
@@ -396,7 +396,7 @@ function fm_try_shopagg_authorize_request($authUsers, $shopaggAccessSecret, $sho
 
     $expected = hash_hmac(
         'sha256',
-        fm_shopagg_signature_payload(basename($_SERVER['PHP_SELF'] ?? ''), $expires),
+        fm_shopagg_signature_payload($expires),
         $shopaggAccessSecret
     );
 
@@ -492,7 +492,7 @@ if ($use_auth) {
             fm_show_shopagg_access_required_page('文件管理器已禁用手工登录，请返回 SHOPAGG 控制台重新生成授权链接。');
         }
 
-        if (isset($_GET['shopagg_expires']) || isset($_GET['shopagg_ip']) || isset($_GET['shopagg_sig'])) {
+        if (isset($_GET['shopagg_expires']) || isset($_GET['shopagg_sig'])) {
             fm_show_shopagg_access_required_page('授权链接无效或已过期，请返回 SHOPAGG 控制台重新生成。');
         }
 
