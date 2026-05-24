@@ -308,7 +308,6 @@ defined('FM_SELF_URL') || define('FM_SELF_URL', ($is_https ? 'https' : 'http') .
 // 退出登录
 if (isset($_GET['logout'])) {
     unset($_SESSION[FM_SESSION_ID]['logged']);
-    unset($_SESSION[FM_SESSION_ID]['shopagg_access_ip']);
     unset($_SESSION[FM_SESSION_ID]['shopagg_access_expires']);
     unset($_SESSION['token']);
     fm_redirect(FM_SELF_URL);
@@ -345,15 +344,14 @@ function fm_get_client_ip()
     return '';
 }
 
-function fm_shopagg_signature_payload($entryFilename, $expires, $clientIp)
+function fm_shopagg_signature_payload($entryFilename, $expires)
 {
-    return basename((string) $entryFilename) . '|' . (string) $expires . '|' . (string) $clientIp;
+    return basename((string) $entryFilename) . '|' . (string) $expires;
 }
 
 function fm_forget_shopagg_access_session()
 {
     unset($_SESSION[FM_SESSION_ID]['logged']);
-    unset($_SESSION[FM_SESSION_ID]['shopagg_access_ip']);
     unset($_SESSION[FM_SESSION_ID]['shopagg_access_expires']);
 }
 
@@ -370,10 +368,7 @@ function fm_has_valid_shopagg_access_session($authUsers)
     }
 
     $expires = (int) ($_SESSION[FM_SESSION_ID]['shopagg_access_expires'] ?? 0);
-    $boundIp = (string) ($_SESSION[FM_SESSION_ID]['shopagg_access_ip'] ?? '');
-    $currentIp = fm_get_client_ip();
-
-    if ($expires <= 0 || $boundIp === '' || $currentIp === '' || time() > $expires || !hash_equals($boundIp, $currentIp)) {
+    if ($expires <= 0 || time() > $expires) {
         fm_forget_shopagg_access_session();
         return false;
     }
@@ -388,16 +383,10 @@ function fm_try_shopagg_authorize_request($authUsers, $shopaggAccessSecret, $sho
     }
 
     $expires = isset($_GET['shopagg_expires']) ? (int) $_GET['shopagg_expires'] : 0;
-    $signedIp = isset($_GET['shopagg_ip']) ? trim((string) $_GET['shopagg_ip']) : '';
     $signature = isset($_GET['shopagg_sig']) ? trim((string) $_GET['shopagg_sig']) : '';
-    $currentIp = fm_get_client_ip();
     $ttl = max(0, (int) $shopaggAccessLinkTtlSeconds);
 
-    if ($shopaggAccessSecret === '' || $expires <= time() || $signedIp === '' || $signature === '' || $currentIp === '') {
-        return false;
-    }
-
-    if (!hash_equals($signedIp, $currentIp)) {
+    if ($shopaggAccessSecret === '' || $expires <= time() || $signature === '') {
         return false;
     }
 
@@ -407,7 +396,7 @@ function fm_try_shopagg_authorize_request($authUsers, $shopaggAccessSecret, $sho
 
     $expected = hash_hmac(
         'sha256',
-        fm_shopagg_signature_payload(basename($_SERVER['PHP_SELF'] ?? ''), $expires, $signedIp),
+        fm_shopagg_signature_payload(basename($_SERVER['PHP_SELF'] ?? ''), $expires),
         $shopaggAccessSecret
     );
 
@@ -416,7 +405,6 @@ function fm_try_shopagg_authorize_request($authUsers, $shopaggAccessSecret, $sho
     }
 
     $_SESSION[FM_SESSION_ID]['logged'] = '__shopagg_access__';
-    $_SESSION[FM_SESSION_ID]['shopagg_access_ip'] = $currentIp;
     $_SESSION[FM_SESSION_ID]['shopagg_access_expires'] = $expires;
 
     return true;
@@ -505,7 +493,7 @@ if ($use_auth) {
         }
 
         if (isset($_GET['shopagg_expires']) || isset($_GET['shopagg_ip']) || isset($_GET['shopagg_sig'])) {
-            fm_show_shopagg_access_required_page('授权链接无效、已过期，或当前访问 IP 已变化，请返回 SHOPAGG 控制台重新生成。');
+            fm_show_shopagg_access_required_page('授权链接无效或已过期，请返回 SHOPAGG 控制台重新生成。');
         }
 
         fm_show_shopagg_access_required_page('请从 SHOPAGG 的站点控制台访问文件管理器。');
