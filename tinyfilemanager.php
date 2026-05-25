@@ -85,7 +85,7 @@ $iconv_input_encoding = 'UTF-8';
 
 // 文件修改日期的 date() 格式
 // 文档 - https://www.php.net/manual/en/function.date.php
-$datetime_format = 'm/d/Y g:i A';
+$datetime_format = 'Y-m-d H:i:s';
 
 // 路径显示模式（查看文件信息时）
 // 'full' => 显示完整路径
@@ -303,7 +303,7 @@ $root_url = fm_clean_path($root_url);
 
 // 网站的绝对路径
 defined('FM_ROOT_URL') || define('FM_ROOT_URL', ($is_https ? 'https' : 'http') . '://' . $http_host . (!empty($root_url) ? '/' . $root_url : ''));
-defined('FM_SELF_URL') || define('FM_SELF_URL', ($is_https ? 'https' : 'http') . '://' . $http_host . $_SERVER['PHP_SELF']);
+defined('FM_SELF_URL') || define('FM_SELF_URL', ($is_https ? 'https' : 'http') . '://' . $http_host . $_SERVER['SCRIPT_NAME']);
 
 // 退出登录
 if (isset($_GET['logout'])) {
