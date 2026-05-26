@@ -3,17 +3,17 @@
 $CONFIG = '{"lang":"zh-CN","error_reporting":false,"show_hidden":false,"hide_Cols":true,"theme":"light"}';
 
 /**
- * SHOPAGG File Manager V2.6
+ * SHOPAGG File Manager V2.7
  * @author SHOPAGG
  * @github https://github.com/zhpelo/shopagg-file-manager
  * @link https://github.com/zhpelo/shopagg-file-manager
  */
 
 // TFM 版本
-define('VERSION', '2.6');
+define('VERSION', '2.7');
 
 // 品牌信息
-define('APP_BRAND', 'SHOPAGG');
+define('APP_BRAND', 'SHOPAGG File Manager');
 define('APP_REPO_URL', 'https://www.shopagg.com/');
 define('APP_DOCS_URL', 'https://forum.shopagg.com/');
 define('APP_ISSUES_URL', 'https://v3.shopagg.com/questions');
@@ -91,7 +91,7 @@ $datetime_format = 'Y-m-d H:i:s';
 // 'full' => 显示完整路径
 // 'relative' => 显示相对于 root_path 的路径
 // 'host' => 显示主机上的路径
-$path_display_mode = 'full';
+$path_display_mode = 'relative';
 
 // 允许创建和重命名的文件扩展名
 // 例如 'txt,html,css,js'
@@ -1918,7 +1918,7 @@ if (isset($_GET['view'])) {
                     <button type="submit" class="btn btn-link btn-sm text-decoration-none fw-bold p-0"><i class="fa fa-cloud-download"></i> <?php echo lng('Download') ?></button> &nbsp;
                 </form>
                 <?php if (!FM_READONLY): ?>
-                    <a class="fw-bold btn btn-outline-primary" title="<?php echo lng('Delete') ?>" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;del=<?php echo urlencode($file) ?>" onclick="confirmDialog(event, 1209, '<?php echo lng('Delete') . ' ' . lng('File'); ?>','<?php echo urlencode($file); ?>', this.href);"> <i class="fa fa-trash"></i> Delete</a>
+                    <a class="fw-bold btn btn-outline-primary" title="<?php echo lng('Delete') ?>" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;del=<?php echo urlencode($file) ?>" onclick="confirmDialog(event, 1209, '<?php echo lng('Delete') . ' ' . lng('File'); ?>','<?php echo urlencode($file); ?>', this.href);"> <i class="fa fa-trash"></i><?php echo lng('Delete') ?></a>
                 <?php endif; ?>
                 <a class="fw-bold btn btn-outline-primary" href="<?php echo fm_enc($file_url) ?>" target="_blank"><i class="fa fa-external-link-square"></i> <?php echo lng('Open') ?></a></b>
                 <?php
