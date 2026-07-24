@@ -13,13 +13,13 @@ $CONFIG = '{"lang":"zh-CN","error_reporting":false,"show_hidden":false,"hide_Col
 define('VERSION', '2.7');
 
 // 品牌信息
-define('APP_BRAND', 'SHOPAGG File Manager');
+define('APP_BRAND', 'SHOPAGG文件管理器');
 define('APP_REPO_URL', 'https://www.shopagg.com/');
 define('APP_DOCS_URL', 'https://forum.shopagg.com/');
 define('APP_ISSUES_URL', 'https://v3.shopagg.com/questions');
 
 // 应用标题
-define('APP_TITLE', '站点文件管理器');
+define('APP_TITLE', 'SHOPAGG 网站文件管理器');
 
 // --- 以下为可编辑配置（请谨慎修改） ---
 
